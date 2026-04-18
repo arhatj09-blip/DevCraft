@@ -1,0 +1,9 @@
+{
+  "name": "devcraft-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx tsx watch server/index.ts",
+    "start": "npx tsx server/index.ts"
+  }
+}
