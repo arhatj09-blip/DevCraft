@@ -12,17 +12,20 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "nanoid": "^5.1.6",
+    "openai": "^4.104.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "zod": "^4.1.8"
   },
   "devDependencies": {
+    "@babel/parser": "^7.29.2",
     "@eslint/js": "^9.39.4",
     "@types/cors": "^2.8.18",
-    "@types/node": "^24.12.2",
     "@types/express": "^5.0.3",
+    "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",

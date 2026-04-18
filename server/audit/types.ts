@@ -16,7 +16,7 @@ export type AuditStep = {
 }
 
 export type AuditStartInput = {
-  githubUrl: string
+  githubUrl?: string
   liveAppUrl?: string
 }
 

@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { auditRouter } from './audit/routes.js'
+import { analyzeRouter } from './analyze/routes.js'
 
 export function createApp() {
   const app = express()
@@ -18,6 +19,7 @@ export function createApp() {
   })
 
   app.use('/api/audit', auditRouter)
+  app.use('/api/analyze', analyzeRouter)
 
   app.use((req, res) => {
     res.status(404).json({
