@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>My Profile - DevSkill Audit</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4648d4",
+            "on-primary": "#ffffff",
+            "primary-container": "#6063ee",
+            "primary-fixed": "#e1e0ff",
+            "primary-fixed-dim": "#c0c1ff",
+            "on-primary-fixed": "#07006c",
+            "on-primary-fixed-variant": "#2f2ebe",
+            "secondary": "#575992",
+            "secondary-container": "#bdbefe",
+            "on-secondary-container": "#494b83",
+            "tertiary": "#904900",
+            "tertiary-container": "#b55d00",
+            "on-tertiary-container": "#fffbff",
+            "surface": "#faf8ff",
+            "surface-bright": "#faf8ff",
+            "surface-variant": "#dae2fd",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "surface-container-highest": "#dae2fd",
+            "surface-dim": "#d2d9f4",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#464554",
+            "background": "#faf8ff",
+            "on-background": "#131b2e",
+            "outline": "#767586",
+            "outline-variant": "#c7c4d7",
+            "inverse-surface": "#283044",
+            "inverse-on-surface": "#eef0ff",
+            "inverse-primary": "#c0c1ff",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "on-error-container": "#93000a",
+            "surface-tint": "#494bd6",
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4,h5,h6,.font-headline { font-family: 'Manrope', sans-serif; }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    body { animation: fadeIn 0.3s ease forwards; }
+    .sidebar-mobile {
+      position:fixed;left:0;top:0;width:16rem;height:100vh;z-index:50;
+      transform:translateX(-100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:none;
+    }
+    .sidebar-mobile.active { transform:translateX(0);display:flex !important; }
+    @media(min-width:768px){.sidebar-mobile{display:flex !important;transform:translateX(0) !important;}}
+    .sidebar-overlay {
+      position:fixed;inset:0;background:rgba(0,0,0,0);opacity:0;
+      pointer-events:none;transition:opacity 0.3s ease;z-index:40;
+    }
+    .sidebar-overlay.active{background:rgba(0,0,0,0.4);opacity:1;pointer-events:auto;}
+    .hamburger-btn{display:flex;flex-direction:column;gap:0.375rem;cursor:pointer;padding:0.5rem;}
+    .hamburger-btn span{width:1.5rem;height:0.1875rem;background-color:currentColor;border-radius:0.125rem;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);}
+    .hamburger-btn.active span:nth-child(1){transform:rotate(45deg) translate(0.625rem,0.625rem);}
+    .hamburger-btn.active span:nth-child(2){opacity:0;transform:translateX(-0.25rem);}
+    .hamburger-btn.active span:nth-child(3){transform:rotate(-45deg) translate(0.4375rem,-0.4375rem);}
+    * { transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+    a, button, input { transition: all 0.3s ease; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased flex h-screen overflow-hidden">
+
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+<!-- Sidebar -->
+<nav id="sidebar" class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-slate-50 flex-col p-4 gap-2 z-40 sidebar-mobile">
+  <div class="mb-8 px-2 flex items-center gap-3">
+    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline font-bold text-lg">D</div>
+    <div>
+      <h1 class="font-headline font-bold text-indigo-600 text-lg leading-none">DevSkill</h1>
+      <span class="text-xs text-on-surface-variant">Precision Suite</span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-1 flex-1">
+    <a href="results_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-indigo-50/50 rounded-md transition-all hover:text-slate-900">
+      <span class="material-symbols-outlined text-[20px]">assessment</span>
+      <span class="font-label text-sm font-medium">Skill Audit</span>
+    </a>
+    <a href="career_insights.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-indigo-50/50 rounded-md transition-all hover:text-slate-900">
+      <span class="material-symbols-outlined text-[20px]">insights</span>
+      <span class="font-label text-sm font-medium">Career Insights</span>
+    </a>
+    <a href="skill_improvement_roadmap.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-indigo-50/50 rounded-md transition-all hover:text-slate-900">
+      <span class="material-symbols-outlined text-[20px]">map</span>
+      <span class="font-label text-sm font-medium">Improvement Roadmap</span>
+    </a>
+    <a href="resume_insights.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-indigo-50/50 rounded-md transition-all hover:text-slate-900">
+      <span class="material-symbols-outlined text-[20px]">description</span>
+      <span class="font-label text-sm font-medium">Resume Insights</span>
+    </a>
+    <!-- Active -->
+    <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 bg-white text-indigo-600 shadow-sm rounded-md transition-all translate-x-1">
+      <span class="material-symbols-outlined text-[20px]" style="font-variation-settings:'FILL' 1">person</span>
+      <span class="font-label text-sm font-medium">My Profile</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Main -->
+<main class="flex-1 flex flex-col md:ml-64 relative h-screen">
+
+  <!-- Topbar -->
+  <header class="sticky top-0 z-50 flex h-16 w-full items-center justify-between bg-white/80 backdrop-blur-md px-6 shadow-[0_4px_30px_rgba(0,0,0,0.04)]">
+    <button id="hamburgerBtn" class="hamburger-btn flex md:hidden text-slate-600">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="flex-1 hidden md:block"></div>
+    <div class="flex-1 max-w-xl">
+      <div class="relative flex items-center">
+        <span class="material-symbols-outlined absolute left-3 text-slate-400 text-[20px]">search</span>
+        <input class="w-full bg-slate-100 border-none rounded-lg py-2 pl-10 pr-4 text-sm placeholder-slate-400 focus:ring-2 focus:ring-primary/40 transition-all" placeholder="Search insights..." type="text"/>
+      </div>
+    </div>
+    <!-- Avatar + Dropdown -->
+    <div class="flex-1 flex justify-end relative">
+      <button id="avatarBtn" class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs hover:ring-2 hover:ring-primary/30 transition-all">ME</button>
+      <div id="profileDropdown" class="hidden absolute right-0 top-10 w-56 bg-white rounded-xl shadow-lg border border-outline-variant/20 py-2 z-50">
+        <div class="flex items-center gap-3 px-4 py-3">
+          <div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary font-bold text-sm">A</div>
+          <div>
+            <p class="text-sm font-semibold text-on-surface">Alex Johnson</p>
+            <p class="text-xs text-on-surface-variant">alex@example.com</p>
+          </div>
+        </div>
+        <div class="h-px bg-outline-variant/20 my-1"></div>
+        <a href="profile.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container-low rounded-lg transition-colors border-b border-outline-variant/15">
+          <span class="material-symbols-outlined text-[18px]">person</span>My Profile
+        </a>
+        <div class="h-px bg-outline-variant/20 my-1"></div>
+        <button onclick="window.location.href='login.html'" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-error hover:bg-error-container/20 rounded-lg transition-colors">
+          <span class="material-symbols-outlined text-[18px]">logout</span>Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="flex-1 overflow-y-auto pt-8 pb-12 px-6 lg:px-12 bg-surface">
+    <div class="max-w-4xl mx-auto space-y-8">
+
+      <!-- Page Header -->
+      <div>
+        <h1 class="font-headline text-4xl font-bold text-on-surface tracking-tight">My Profile</h1>
+        <p class="text-on-surface-variant text-base mt-2">Manage your developer identity and account settings.</p>
+      </div>
+
+      <!-- Identity Card -->
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 p-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div class="w-20 h-20 rounded-2xl bg-primary flex items-center justify-center text-on-primary font-headline font-bold text-3xl shrink-0">A</div>
+          <div class="flex-1">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+              <div>
+                <h2 class="font-headline text-2xl font-bold text-on-surface">Alex Johnson</h2>
+                <p class="text-on-surface-variant text-sm mt-0.5">alex@example.com</p>
+              </div>
+              <span class="sm:ml-auto px-3 py-1 bg-primary-fixed-dim text-on-primary-fixed text-xs font-semibold rounded-full">Intermediate Developer</span>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-4 text-sm text-on-surface-variant">
+              <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">location_on</span>Pune, India</span>
+              <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">work</span>2 years experience</span>
+              <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">calendar_today</span>Joined April 2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 pt-6 border-t border-outline-variant/15 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Full Name</label>
+            <input class="mt-1 w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30" value="Alex Johnson" type="text"/>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Current Role</label>
+            <select class="mt-1 w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30">
+              <option>Frontend Developer</option>
+              <option>Backend Developer</option>
+              <option>Full Stack Developer</option>
+              <option>DevOps Engineer</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Years of Experience</label>
+            <select class="mt-1 w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30">
+              <option>Less than 1 year</option>
+              <option selected>1–3 years</option>
+              <option>3–5 years</option>
+              <option>5+ years</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Target Role</label>
+            <select class="mt-1 w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30">
+              <option>Mid-level Frontend Engineer</option>
+              <option>Senior Frontend Engineer</option>
+              <option>Full Stack Developer</option>
+              <option>Backend Engineer</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-4 flex justify-end">
+          <button onclick="showToast('Profile saved!')" class="px-5 py-2 bg-primary text-on-primary text-sm font-semibold rounded-lg hover:opacity-90 transition-all">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Connected Accounts -->
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 p-6">
+        <h3 class="font-headline text-lg font-bold text-on-surface mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-primary">link</span>Connected Accounts
+        </h3>
+        <div class="flex flex-col gap-3">
+          <!-- GitHub connected -->
+          <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-on-surface flex items-center justify-center">
+                <svg class="w-5 h-5 text-white fill-white" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.05.138 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.65.24 2.87.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.19.69.8.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-on-surface">GitHub</p>
+                <p class="text-xs text-on-surface-variant">@alexjohnson-dev · 12 repositories</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">check_circle</span>Connected
+            </span>
+          </div>
+          <!-- Live App -->
+          <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center">
+                <span class="material-symbols-outlined text-on-surface-variant text-[20px]">language</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-on-surface">Live App URL</p>
+                <p class="text-xs text-on-surface-variant">https://alexportfolio.dev</p>
+              </div>
+            </div>
+            <button class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full hover:bg-surface-container-high transition-all">Update</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit History -->
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 p-6">
+        <h3 class="font-headline text-lg font-bold text-on-surface mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-primary">history</span>Audit History
+        </h3>
+        <div class="flex flex-col gap-3">
+          <!-- Audit 1 - Latest -->
+          <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant/15">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <span class="font-headline font-bold text-primary text-sm">7.2</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-on-surface">Full Profile Audit</p>
+                <p class="text-xs text-on-surface-variant mt-0.5">April 18, 2026 · 12 repos scanned · Intermediate</p>
+              </div>
+            </div>
+            <a href="results_dashboard.html" class="px-3 py-1.5 bg-primary text-on-primary text-xs font-semibold rounded-lg hover:opacity-90 transition-all">View Report</a>
+          </div>
+          <!-- Audit 2 -->
+          <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant/15">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0">
+                <span class="font-headline font-bold text-on-surface-variant text-sm">6.5</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-on-surface">Full Profile Audit</p>
+                <p class="text-xs text-on-surface-variant mt-0.5">March 2, 2026 · 9 repos scanned · Intermediate</p>
+              </div>
+            </div>
+            <a href="results_dashboard.html" class="px-3 py-1.5 border border-outline-variant/40 text-on-surface-variant text-xs font-semibold rounded-lg hover:bg-surface-container transition-all">View Report</a>
+          </div>
+          <!-- Audit 3 -->
+          <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant/15">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0">
+                <span class="font-headline font-bold text-on-surface-variant text-sm">5.8</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-on-surface">Single Repo Audit</p>
+                <p class="text-xs text-on-surface-variant mt-0.5">Jan 15, 2026 · ecommerce-frontend · Junior</p>
+              </div>
+            </div>
+            <a href="results_dashboard.html" class="px-3 py-1.5 border border-outline-variant/40 text-on-surface-variant text-xs font-semibold rounded-lg hover:bg-surface-container transition-all">View Report</a>
+          </div>
+          <!-- Progress note -->
+          <div class="flex items-center gap-2 mt-1 px-1">
+            <span class="material-symbols-outlined text-green-600 text-[16px]">trending_up</span>
+            <p class="text-xs text-green-700 font-medium">Your score improved by 1.4 points across your last 3 audits.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="bg-surface-container-lowest rounded-xl border border-error/20 p-6">
+        <h3 class="font-headline text-lg font-bold text-on-surface mb-1 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-error">warning</span>Danger Zone
+        </h3>
+        <p class="text-sm text-on-surface-variant mb-4">These actions are irreversible. Please be certain.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button onclick="showToast('Audit history cleared.')" class="px-4 py-2 border border-error/30 text-error text-sm font-semibold rounded-lg hover:bg-error-container/20 transition-all">Clear Audit History</button>
+          <button onclick="window.location.href='login.html'" class="px-4 py-2 bg-error text-on-error text-sm font-semibold rounded-lg hover:opacity-90 transition-all">Delete Account</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 right-6 bg-on-surface text-inverse-on-surface text-sm font-medium px-5 py-3 rounded-xl shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
+
+<script>
+  // Sidebar toggle
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const sidebar = document.getElementById('sidebar');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+  hamburgerBtn?.addEventListener('click', () => {
+    hamburgerBtn.classList.toggle('active');
+    sidebar?.classList.toggle('active');
+    sidebarOverlay?.classList.toggle('active');
+  });
+  sidebarOverlay?.addEventListener('click', () => {
+    hamburgerBtn?.classList.remove('active');
+    sidebar?.classList.remove('active');
+    sidebarOverlay?.classList.remove('active');
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      hamburgerBtn?.classList.remove('active');
+      sidebar?.classList.remove('active');
+      sidebarOverlay?.classList.remove('active');
+    }
+  });
+
+  // Avatar dropdown
+  const avatarBtn = document.getElementById('avatarBtn');
+  const profileDropdown = document.getElementById('profileDropdown');
+  avatarBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileDropdown?.classList.toggle('hidden');
+  });
+  document.addEventListener('click', () => profileDropdown?.classList.add('hidden'));
+
+  // Toast
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    toast.style.pointerEvents = 'auto';
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.pointerEvents = 'none';
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>
