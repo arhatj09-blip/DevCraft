@@ -318,9 +318,34 @@ html {
 </div>
 </div>
 <!-- Profile Avatar (Right) -->
-<div class="flex-1 flex justify-end">
-<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs">
+<div class="flex-1 flex justify-end relative">
+<button id="profileAvatarBtn" class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs cursor-pointer hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors">
 ME
+</button>
+<!-- Profile Dropdown -->
+<div id="profileDropdown" class="hidden absolute right-0 top-12 w-56 bg-white dark:bg-slate-800 rounded-xl border border-outline-variant/15 shadow-lg z-50">
+<!-- User Info -->
+<div class="p-4 border-b border-outline-variant/15">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-sm flex-shrink-0">
+A
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-headline text-sm font-semibold text-on-surface">Alex Johnson</p>
+<p class="text-xs text-on-surface-variant truncate">alex@example.com</p>
+</div>
+</div>
+</div>
+<!-- My Profile -->
+<a href="profile.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container-low rounded-lg transition-colors border-b border-outline-variant/15">
+<span class="material-symbols-outlined text-[18px]">person</span>
+My Profile
+</a>
+<!-- Sign Out -->
+<button onclick="window.location.href='login.html'" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-error hover:bg-error-container/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+Sign Out
+</button>
 </div>
 </div>
 </header>
@@ -386,7 +411,93 @@ ME
 </div>
 </div>
 </div>
+
+<!-- Salary Bracket Analysis Section -->
+<div class="bg-surface-container rounded-xl p-8 relative overflow-hidden border border-outline-variant/15">
+<div class="absolute top-0 right-0 w-96 h-96 bg-tertiary/5 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none"></div>
+<div class="relative z-10">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-tertiary text-[28px]">payments</span>
+<h3 class="font-headline text-xl font-bold text-on-surface">Salary Bracket Analysis</h3>
 </div>
+
+<!-- Bracket Display -->
+<div class="flex items-center justify-between mb-8 bg-surface-container-low rounded-lg p-6">
+<!-- Current Bracket -->
+<div class="flex-1">
+<p class="text-xs text-on-surface-variant font-label mb-2">Your current bracket</p>
+<div class="bg-surface-container-low text-on-surface px-4 py-2 rounded-full inline-block">
+<span class="font-headline font-semibold">₹6L – ₹9L</span>
+<span class="text-xs text-on-surface-variant"> / year</span>
+</div>
+</div>
+
+<!-- Arrow -->
+<div class="px-6">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px]">chevron_right</span>
+</div>
+
+<!-- Next Bracket -->
+<div class="flex-1 text-right">
+<p class="text-xs text-on-surface-variant font-label mb-2">Next bracket</p>
+<div class="bg-primary-fixed-dim text-on-primary-fixed px-4 py-2 rounded-full inline-block">
+<span class="font-headline font-semibold">₹12L – ₹18L</span>
+<span class="text-xs text-on-primary-fixed/80"> / year</span>
+</div>
+</div>
+</div>
+
+<!-- Skills Blocking Jump -->
+<h4 class="font-headline font-semibold text-on-surface mb-6">Skills blocking the jump:</h4>
+
+<!-- Skill 1: Node.js -->
+<div class="mb-8 pb-6 border-b border-outline-variant/15">
+<div class="flex justify-between items-start mb-3">
+<div>
+<p class="font-headline font-medium text-on-surface">Node.js Backend Architecture</p>
+<p class="text-xs text-on-surface-variant mt-1">Fixes this → +₹3–5L salary range</p>
+</div>
+<span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded">35%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden mb-4">
+<div class="h-full bg-primary w-[35%] rounded-full"></div>
+</div>
+<button class="text-primary hover:text-primary/80 text-xs font-semibold font-label">Start Learning</button>
+</div>
+
+<!-- Skill 2: System Design -->
+<div class="mb-8 pb-6 border-b border-outline-variant/15">
+<div class="flex justify-between items-start mb-3">
+<div>
+<p class="font-headline font-medium text-on-surface">System Design Fundamentals</p>
+<p class="text-xs text-on-surface-variant mt-1">Fixes this → +₹2–4L salary range</p>
+</div>
+<span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded">20%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden mb-4">
+<div class="h-full bg-tertiary w-[20%] rounded-full"></div>
+</div>
+<button class="text-primary hover:text-primary/80 text-xs font-semibold font-label">Start Learning</button>
+</div>
+
+<!-- Skill 3: CI/CD & Docker -->
+<div class="pb-6">
+<div class="flex justify-between items-start mb-3">
+<div>
+<p class="font-headline font-medium text-on-surface">CI/CD & Docker</p>
+<p class="text-xs text-on-surface-variant mt-1">Fixes this → +₹1–3L salary range</p>
+</div>
+<span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded">45%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden mb-4">
+<div class="h-full bg-secondary w-[45%] rounded-full"></div>
+</div>
+<button class="text-primary hover:text-primary/80 text-xs font-semibold font-label">Start Learning</button>
+</div>
+</div>
+</div>
+
 <!-- Audit Reasoning Section -->
 <div class="bg-surface-container-lowest rounded-xl p-8 ring-1 ring-outline-variant/15">
 <div class="flex items-center gap-3 mb-8 border-b-0">
@@ -464,6 +575,30 @@ ME
       hamburgerBtn?.classList.remove('active');
       sidebar?.classList.remove('active');
       sidebarOverlay?.classList.remove('active');
+    }
+  });
+
+  // Profile dropdown functionality
+  const profileAvatarBtn = document.getElementById('profileAvatarBtn');
+  const profileDropdown = document.getElementById('profileDropdown');
+
+  // Toggle dropdown on avatar click
+  profileAvatarBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileDropdown?.classList.toggle('hidden');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!profileAvatarBtn?.contains(e.target) && !profileDropdown?.contains(e.target)) {
+      profileDropdown?.classList.add('hidden');
+    }
+  });
+
+  // Close dropdown on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      profileDropdown?.classList.add('hidden');
     }
   });
 </script>

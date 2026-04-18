@@ -307,9 +307,34 @@ html {
 </div>
 </div>
 <!-- Profile Avatar (Right) -->
-<div class="flex-1 flex justify-end">
-<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs">
+<div class="flex-1 flex justify-end relative">
+<button id="profileAvatarBtn" class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs cursor-pointer hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors">
 ME
+</button>
+<!-- Profile Dropdown -->
+<div id="profileDropdown" class="hidden absolute right-0 top-12 w-56 bg-white dark:bg-slate-800 rounded-xl border border-outline-variant/15 shadow-lg z-50">
+<!-- User Info -->
+<div class="p-4 border-b border-outline-variant/15">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-sm flex-shrink-0">
+A
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-headline text-sm font-semibold text-on-surface">Alex Johnson</p>
+<p class="text-xs text-on-surface-variant truncate">alex@example.com</p>
+</div>
+</div>
+</div>
+<!-- My Profile -->
+<a href="profile.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container-low rounded-lg transition-colors border-b border-outline-variant/15">
+<span class="material-symbols-outlined text-[18px]">person</span>
+My Profile
+</a>
+<!-- Sign Out -->
+<button onclick="window.location.href='login.html'" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-error hover:bg-error-container/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+Sign Out
+</button>
 </div>
 </div>
 </header>
@@ -321,6 +346,60 @@ ME
 <h2 class="font-headline text-4xl font-bold text-on-surface tracking-tight" style="">Audit Results</h2>
 <p class="font-body text-on-surface-variant text-base mt-2" style="">Comprehensive analysis completed just now.</p>
 </div>
+
+<!-- Percentile Ranking Widget -->
+<div class="bg-surface-container rounded-xl p-8 relative overflow-hidden border border-outline-variant/15">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none"></div>
+<div class="relative z-10">
+<!-- Main Stat -->
+<div class="mb-8">
+<p class="text-on-surface-variant text-sm font-label mb-2">Your Percentile Rank</p>
+<h3 class="font-headline text-5xl font-bold text-primary mb-2">Top 23%</h3>
+<p class="text-on-surface-variant text-base">of developers with 1–3 years experience on GitHub</p>
+</div>
+
+<!-- Percentile Bar -->
+<div class="mb-8">
+<div class="w-full h-3 bg-surface-variant rounded-full overflow-hidden mb-3">
+<div class="flex h-full">
+<!-- Bottom 77% (left side) -->
+<div class="flex-grow bg-surface-variant"></div>
+<!-- Top 23% (right side) -->
+<div class="w-[23%] bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Percentile Labels -->
+<div class="flex justify-between text-xs text-on-surface-variant">
+<span>Bottom 25%</span>
+<span>Median</span>
+<span>Top 10%</span>
+</div>
+</div>
+
+<!-- Metric Chips -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-container-low rounded-full px-4 py-2 flex items-center justify-between">
+<div>
+<p class="text-xs text-on-surface-variant font-label">Ranked</p>
+<p class="text-sm font-semibold text-on-surface">#1,847 of 8,200</p>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-full px-4 py-2 flex items-center justify-between">
+<div>
+<p class="text-xs text-on-surface-variant font-label">Code Quality</p>
+<p class="text-sm font-semibold text-on-surface">Better than 77%</p>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-full px-4 py-2 flex items-center justify-between">
+<div>
+<p class="text-xs text-on-surface-variant font-label">Documentation</p>
+<p class="text-sm font-semibold text-on-surface">Top 15%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 <!-- Bento Grid Top: Hero Summary -->
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 <!-- Score Card (Primary Focus) -->
@@ -358,12 +437,52 @@ ME
 </div>
 </div>
 <div>
-<div class="flex justify-between text-sm mb-1">
+<div class="flex justify-between items-center text-sm mb-1">
 <span class="font-medium text-on-surface" style="">Security Practices</span>
+<div class="flex items-center gap-2">
 <span class="text-on-surface-variant" style="">60%</span>
+<button id="security-expand-btn" class="security-expand-toggle p-1 hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span>
+</button>
 </div>
-<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden mb-4">
 <div class="bg-tertiary h-full w-[60%] rounded-full"></div>
+</div>
+<!-- Expanded Security Issues Panel -->
+<div id="security-issues-panel" class="hidden mt-4 pt-4 border-t border-outline-variant/15 space-y-3">
+<!-- Issue 1 -->
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0 mt-0.5">error</span>
+<div class="flex-1 min-w-0">
+<p class="font-medium text-on-surface text-sm">JWT stored in localStorage</p>
+<p class="text-xs text-on-surface-variant mt-1">Found in: src/utils/auth.js line 34</p>
+</div>
+</div>
+<!-- Issue 2 -->
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0 mt-0.5">error</span>
+<div class="flex-1 min-w-0">
+<p class="font-medium text-on-surface text-sm">No input sanitization on form submit</p>
+<p class="text-xs text-on-surface-variant mt-1">Found in: src/components/LoginForm.tsx line 67</p>
+</div>
+</div>
+<!-- Issue 3 -->
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0 mt-0.5">error</span>
+<div class="flex-1 min-w-0">
+<p class="font-medium text-on-surface text-sm">API keys exposed in client bundle</p>
+<p class="text-xs text-on-surface-variant mt-1">Found in: src/config/env.js line 12</p>
+</div>
+</div>
+<!-- Issue 4 -->
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-[18px] flex-shrink-0 mt-0.5">error</span>
+<div class="flex-1 min-w-0">
+<p class="font-medium text-on-surface text-sm">Unencrypted sensitive data in state</p>
+<p class="text-xs text-on-surface-variant mt-1">Found in: src/state/store.ts line 89</p>
+</div>
+</div>
 </div>
 </div>
 <div>
@@ -573,6 +692,47 @@ ME
       hamburgerBtn?.classList.remove('active');
       sidebar?.classList.remove('active');
       sidebarOverlay?.classList.remove('active');
+    }
+  });
+
+  // Profile dropdown functionality
+  const profileAvatarBtn = document.getElementById('profileAvatarBtn');
+  const profileDropdown = document.getElementById('profileDropdown');
+
+  // Toggle dropdown on avatar click
+  profileAvatarBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileDropdown?.classList.toggle('hidden');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!profileAvatarBtn?.contains(e.target) && !profileDropdown?.contains(e.target)) {
+      profileDropdown?.classList.add('hidden');
+    }
+  });
+
+  // Close dropdown on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      profileDropdown?.classList.add('hidden');
+    }
+  });
+
+  // Security Practices Expansion Toggle
+  const securityExpandBtn = document.getElementById('security-expand-btn');
+  const securityIssuesPanel = document.getElementById('security-issues-panel');
+
+  securityExpandBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    securityIssuesPanel?.classList.toggle('hidden');
+    
+    // Rotate the expand icon
+    const icon = securityExpandBtn.querySelector('.material-symbols-outlined');
+    if (securityIssuesPanel?.classList.contains('hidden')) {
+      icon.textContent = 'expand_more';
+    } else {
+      icon.textContent = 'expand_less';
     }
   });
 </script>

@@ -140,12 +140,33 @@
 <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
 <form class="space-y-6 relative z-10">
 <div class="space-y-2">
-<label class="block font-label text-sm font-semibold text-on-surface" for="github-url" style="">GitHub Repository URL</label>
+<label class="block font-label text-sm font-semibold text-on-surface" for="github-url" style="">GitHub Profile URL</label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-4 text-on-surface-variant" style="">code</span>
-<input class="w-full bg-surface-container-low border-none rounded-DEFAULT pl-12 pr-4 py-3.5 text-on-surface font-body focus:ring-0 focus:outline-none transition-all placeholder:text-on-surface-variant/60" id="github-url" placeholder="https://github.com/username/project" type="url"/>
+<input class="w-full bg-surface-container-low border-none rounded-DEFAULT pl-12 pr-4 py-3.5 text-on-surface font-body focus:ring-0 focus:outline-none transition-all placeholder:text-on-surface-variant/60" id="github-url" placeholder="https://github.com/username" type="url"/>
 </div>
 </div>
+
+<!-- Project Repositories Section -->
+<div class="space-y-2">
+<div>
+<label class="block font-label text-sm font-semibold text-on-surface mb-1" style="">Project Repositories <span class="text-on-surface-variant/60 font-normal">(optional)</span></label>
+<p class="text-xs text-on-surface-variant font-body">Add specific repos to deep-audit</p>
+</div>
+<div id="repo-inputs-container" class="space-y-3">
+<!-- Template repo input -->
+<div class="repo-input-group relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant" style="">folder</span>
+<input class="w-full bg-surface-container-low border-none rounded-DEFAULT pl-12 pr-4 py-3.5 text-on-surface font-body focus:ring-0 focus:outline-none transition-all placeholder:text-on-surface-variant/60" placeholder="https://github.com/username/repo-name" type="url"/>
+</div>
+</div>
+<button id="add-repo-btn" type="button" class="text-primary hover:text-primary/80 text-sm font-semibold font-label mt-2 inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">add</span>
+Add another repository
+</button>
+<p id="max-repos-msg" class="hidden text-xs text-on-surface-variant font-label mt-2">Maximum 3 repositories</p>
+</div>
+
 <div class="space-y-2">
 <label class="block font-label text-sm font-semibold text-on-surface" for="live-url" style="">Live App URL <span class="text-on-surface-variant/60 font-normal ml-1" style="">(Optional)</span></label>
 <div class="relative flex items-center">
@@ -154,7 +175,7 @@
 </div>
 </div>
 <div class="pt-4">
-<button class="w-full bg-gradient-primary hover:opacity-90 text-on-primary font-label font-semibold py-4 rounded-DEFAULT shadow-sm transition-all flex items-center justify-center gap-2 group" style="" type="button">
+<button onclick="window.location.href='results_dashboard.html'" class="w-full bg-gradient-primary hover:opacity-90 text-on-primary font-label font-semibold py-4 rounded-DEFAULT shadow-sm transition-all flex items-center justify-center gap-2 group" style="" type="button">
 <span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="">model_training</span>
                         Run Audit
                     </button>
@@ -221,4 +242,37 @@
 <footer class="mt-auto py-8 text-center text-sm font-body text-on-surface-variant bg-surface-container-lowest border-t border-surface-container">
 <p class="" style="">© 2024 DevSkill Audit. Precision tooling for developers.</p>
 </footer>
+<script>
+  // Repository input management
+  const repoInputsContainer = document.getElementById('repo-inputs-container');
+  const addRepoBtn = document.getElementById('add-repo-btn');
+  const maxReposMsg = document.getElementById('max-repos-msg');
+  const maxRepos = 3;
+
+  // Add repo button click handler
+  addRepoBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const currentCount = document.querySelectorAll('.repo-input-group').length;
+    
+    if (currentCount >= maxRepos) {
+      addRepoBtn?.classList.add('hidden');
+      maxReposMsg?.classList.remove('hidden');
+      return;
+    }
+
+    // Clone the first repo input
+    const firstInput = document.querySelector('.repo-input-group');
+    if (firstInput) {
+      const newInput = firstInput.cloneNode(true);
+      repoInputsContainer?.appendChild(newInput);
+      
+      // Update the count and toggle button visibility
+      const newCount = document.querySelectorAll('.repo-input-group').length;
+      if (newCount >= maxRepos) {
+        addRepoBtn?.classList.add('hidden');
+        maxReposMsg?.classList.remove('hidden');
+      }
+    }
+  });
+</script>
 </body></html>
