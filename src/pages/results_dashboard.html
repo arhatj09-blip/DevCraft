@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Results Dashboard - DevSkill Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#703700",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d2d9f4",
+                      "on-surface-variant": "#464554",
+                      "secondary": "#575992",
+                      "tertiary": "#904900",
+                      "on-tertiary-container": "#fffbff",
+                      "inverse-primary": "#c0c1ff",
+                      "inverse-surface": "#283044",
+                      "primary": "#4648d4",
+                      "on-primary-fixed": "#07006c",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#dae2fd",
+                      "secondary-fixed": "#e1e0ff",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "on-secondary-fixed-variant": "#404178",
+                      "on-background": "#131b2e",
+                      "background": "#faf8ff",
+                      "secondary-fixed-dim": "#c0c1ff",
+                      "on-secondary-container": "#494b83",
+                      "surface-container-low": "#f2f3ff",
+                      "on-primary-fixed-variant": "#2f2ebe",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#eaedff",
+                      "primary-fixed": "#e1e0ff",
+                      "surface-bright": "#faf8ff",
+                      "on-secondary-fixed": "#13144a",
+                      "on-secondary": "#ffffff",
+                      "outline": "#767586",
+                      "on-tertiary-fixed": "#301400",
+                      "error": "#ba1a1a",
+                      "surface": "#faf8ff",
+                      "surface-tint": "#494bd6",
+                      "on-primary-container": "#fffbff",
+                      "outline-variant": "#c7c4d7",
+                      "secondary-container": "#bdbefe",
+                      "primary-container": "#6063ee",
+                      "tertiary-fixed": "#ffdcc5",
+                      "inverse-on-surface": "#eef0ff",
+                      "on-surface": "#131b2e",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-container": "#b55d00",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb783",
+                      "on-error-container": "#93000a",
+                      "surface-container-high": "#e2e7ff",
+                      "surface-container-highest": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Manrope"
+                      ],
+                      "body": [
+                              "Inter"
+                      ],
+                      "label": [
+                              "Inter"
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- SideNavBar Container -->
+<nav class="hidden md:flex flex-col h-full p-4 gap-2 bg-slate-50 dark:bg-slate-900 tonal-layering bg-slate-100/50 dark:bg-slate-800/50 h-screen w-64 fixed left-0 top-0 flat no-border tonal-depth z-40">
+<!-- Header -->
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline font-bold" style="">D</div>
+<div>
+<h1 class="font-manrope font-bold text-indigo-600 dark:text-indigo-400 text-lg leading-none" style="">DevSkill</h1>
+<span class="text-xs text-on-surface-variant" style="">Precision Suite</span>
+</div>
+</div>
+<!-- Primary Tabs -->
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm rounded-md hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all translate-x-1 duration-150" href="#" style="">
+<span class="material-symbols-outlined text-[20px]" style="">assessment</span>
+<span class="font-label text-sm font-medium" style="">Skill Audit</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all scale-95 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined text-[20px]" style="">insights</span>
+<span class="font-label text-sm font-medium" style="">Career Insights</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all scale-95 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined text-[20px]" style="">map</span>
+<span class="font-label text-sm font-medium" style="">Improvement Roadmap</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all scale-95 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined text-[20px]" style="">description</span>
+<span class="font-label text-sm font-medium" style="">Resume Insights</span>
+</a>
+</div>
+<!-- Footer Tabs -->
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 relative h-screen">
+<!-- TopNavBar Container -->
+<header class="flex items-center justify-between px-6 h-16 w-full docked full-width top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md no-border tonal-shift bg-slate-50 dark:bg-slate-900 shadow-[0_4px_30px_rgba(0,0,0,0.04)] absolute">
+<!-- Search Bar (Left as per JSON) -->
+<div class="flex items-center w-64 h-10 bg-surface-container-low rounded-DEFAULT px-3 gap-2 focus-within:ring-1 focus-within:ring-primary/40 focus-within:shadow-[0_0_8px_rgba(70,72,212,0.4)] transition-all">
+<span class="material-symbols-outlined text-outline text-[20px]" style="">search</span>
+<input class="bg-transparent border-none outline-none text-sm w-full text-on-surface-variant font-body placeholder:text-outline/70 focus:ring-0 p-0" placeholder="Search insights..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<!-- Trailing Icons -->
+<!-- Profile Avatar -->
+<div class="w-8 h-8 rounded-full overflow-hidden ml-2 cursor-pointer border border-outline-variant/15">
+<div class="w-full h-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-medium text-sm" style="">
+                            ME
+                        </div>
+</div>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<div class="flex-1 overflow-y-auto pt-24 pb-12 px-6 lg:px-12 bg-surface">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- Page Header -->
+<div>
+<h2 class="font-headline text-3xl tracking-tight font-bold text-on-surface" style="">Audit Results</h2>
+<p class="font-body text-on-surface-variant mt-1 text-sm" style="">Comprehensive analysis completed just now.</p>
+</div>
+<!-- Bento Grid Top: Hero Summary -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Score Card (Primary Focus) -->
+<div class="lg:col-span-2 bg-surface-container rounded-xl p-8 relative overflow-hidden flex flex-col justify-between">
+<!-- Gradient background lift -->
+<div class="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-primary/5 to-primary-container/5 pointer-events-none"></div>
+<div class="flex justify-between items-start z-10">
+<div>
+<h3 class="font-headline text-xl font-semibold text-on-surface mb-1" style="">Developer Profile</h3>
+<p class="font-body text-primary font-medium" style="">Intermediate Developer</p>
+</div>
+<div class="bg-surface-container-lowest px-4 py-2 rounded-full border border-outline-variant/15 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<span class="font-headline font-extrabold text-2xl text-on-surface" style="">7.2</span>
+<span class="text-on-surface-variant text-sm font-medium" style="">/ 10</span>
+</div>
+</div>
+<div class="mt-8 z-10">
+<h4 class="font-headline text-lg font-semibold text-on-surface mb-2" style="">Executive Summary</h4>
+<p class="font-body text-on-surface-variant leading-relaxed" style="">
+                                    Demonstrates <strong class="text-on-surface">strong frontend skills</strong> with a solid grasp of component architecture and state management. However, there are notable <strong class="text-on-surface">weak backend fundamentals</strong>, specifically regarding API design efficiency and database query optimization.
+                                </p>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="bg-surface-container-low rounded-xl p-6 flex flex-col gap-4">
+<h3 class="font-headline text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-2" style="">Key Metrics</h3>
+<div class="flex flex-col gap-3">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="font-medium text-on-surface" style="">Code Maintainability</span>
+<span class="text-on-surface-variant" style="">85%</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="font-medium text-on-surface" style="">Security Practices</span>
+<span class="text-on-surface-variant" style="">60%</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[60%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="font-medium text-on-surface" style="">Test Coverage</span>
+<span class="text-on-surface-variant" style="">42%</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[42%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Strengths & Weaknesses (Tonal Layering & Chips) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Strengths -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 shadow-[0_4px_30px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-[20px]" style="">verified</span>
+<h3 class="font-headline font-bold text-lg text-on-surface" style="">Verified Strengths</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary-fixed-dim text-on-primary-fixed px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-[16px]" style="">check_circle</span>
+                                    React Component Lifecycles
+                                </span>
+<span class="bg-primary-fixed-dim text-on-primary-fixed px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-[16px]" style="">check_circle</span>
+                                    CSS/Tailwind Proficiency
+                                </span>
+<span class="bg-primary-fixed-dim text-on-primary-fixed px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-[16px]" style="">check_circle</span>
+                                    Client-Side Routing
+                                </span>
+</div>
+</div>
+<!-- Weaknesses -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 shadow-[0_4px_30px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-tertiary text-[20px]" style="">warning</span>
+<h3 class="font-headline font-bold text-lg text-on-surface" style="">Growth Areas</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-tertiary-container text-on-tertiary px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-[16px]" style="">error</span>
+                                    N+1 Query Issues
+                                </span>
+<span class="bg-tertiary-container text-on-tertiary px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-[16px]" style="">error</span>
+                                    RESTful Contract Design
+                                </span>
+<span class="bg-tertiary-container text-on-tertiary px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<span class="material-symbols-outlined text-[16px]" style="">error</span>
+                                    Error Handling (Node.js)
+                                </span>
+</div>
+</div>
+</div>
+<!-- Code-Level Insights (Architectural rules applied) -->
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-4" style="">Code-Level Insights</h3>
+<div class="flex flex-col gap-4">
+<div class="bg-surface-container rounded-xl overflow-hidden flex flex-col md:flex-row border border-outline-variant/15">
+<div class="p-5 md:w-1/3 flex flex-col justify-center bg-surface-container-low border-b md:border-b-0 md:border-r border-outline-variant/15">
+<div class="flex items-center gap-2 mb-2 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="">bolt</span>
+<span class="font-semibold text-sm" style="">Performance Issue</span>
+</div>
+<h4 class="font-headline text-on-surface font-medium mb-1" style="">Unnecessary Re-renders</h4>
+<p class="text-xs text-on-surface-variant" style="">Missing memoization in lists causes cascade renders.</p>
+</div>
+<div class="md:w-2/3 p-4 bg-surface-container-lowest">
+<!-- Code Snippet Rule -->
+<div class="bg-surface-container-lowest border-l-4 border-tertiary p-3 rounded-r-DEFAULT font-mono text-xs text-on-surface-variant overflow-x-auto">
+<code>
+                                            // Found in DashboardView.tsx<br/>
+                                            {items.map(item =&gt; (<br/>
+                                              &lt;ListItem data={item} /&gt; // No React.memo on ListItem<br/>
+                                            ))}<br/>
+</code>
+</div>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl overflow-hidden flex flex-col md:flex-row border border-outline-variant/15">
+<div class="p-5 md:w-1/3 flex flex-col justify-center bg-surface-container-low border-b md:border-b-0 md:border-r border-outline-variant/15">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="">thumb_up</span>
+<span class="font-semibold text-sm" style="">Excellent Pattern</span>
+</div>
+<h4 class="font-headline text-on-surface font-medium mb-1" style="">Custom Hooks Separation</h4>
+<p class="text-xs text-on-surface-variant" style="">Logic cleanly extracted from UI components.</p>
+</div>
+<div class="md:w-2/3 p-4 bg-surface-container-lowest">
+<div class="bg-surface-container-lowest border-l-4 border-primary p-3 rounded-r-DEFAULT font-mono text-xs text-on-surface-variant overflow-x-auto">
+<code>
+                                            // Found in useAuth.ts<br/>
+                                            export const useAuth = () =&gt; {<br/>
+                                              const [user, setUser] = useState(null);<br/>
+                                              // ... clean auth logic<br/>
+                                            };
+                                        </code>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Project Breakdown & Live App Analysis Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-12">
+<!-- Project Breakdown -->
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-4" style="">Project Breakdown</h3>
+<div class="flex flex-col gap-3">
+<!-- Repo Card -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between border border-outline-variant/15">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[24px]" style="">folder_copy</span>
+<div>
+<h4 class="font-medium text-sm text-on-surface" style="">ecommerce-frontend</h4>
+<span class="text-xs text-on-surface-variant" style="">React, Redux, Tailwind</span>
+</div>
+</div>
+<div class="text-primary font-semibold text-sm" style="">+8.5 pts</div>
+</div>
+<!-- Repo Card -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between border border-outline-variant/15">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[24px]" style="">folder_copy</span>
+<div>
+<h4 class="font-medium text-sm text-on-surface" style="">inventory-api-node</h4>
+<span class="text-xs text-on-surface-variant" style="">Express, MongoDB</span>
+</div>
+</div>
+<div class="text-tertiary font-semibold text-sm" style="">-2.0 pts</div>
+</div>
+</div>
+</div>
+<!-- Live App Analysis -->
+<div class="bg-surface-container p-6 rounded-xl flex flex-col">
+<h3 class="font-headline font-bold text-xl text-on-surface mb-4" style="">Live App Analysis</h3>
+<div class="flex-1 flex flex-col justify-center gap-6">
+<div>
+<div class="flex justify-between items-end mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant" style="">speed</span>
+<span class="font-medium text-sm text-on-surface" style="">Lighthouse Performance</span>
+</div>
+<span class="font-headline font-bold text-lg text-primary" style="">92</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[92%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant" style="">accessibility_new</span>
+<span class="font-medium text-sm text-on-surface" style="">Accessibility (a11y)</span>
+</div>
+<span class="font-headline font-bold text-lg text-tertiary" style="">74</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[74%] rounded-full"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2" style="">Missing ARIA labels on custom modal components.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

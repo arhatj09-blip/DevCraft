@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="antialiased" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevSkill Audit - Resume Insights</title>
+<!-- Google Fonts: Manrope (Headline) & Inter (Body) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#703700",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d2d9f4",
+                    "on-surface-variant": "#464554",
+                    "secondary": "#575992",
+                    "tertiary": "#904900",
+                    "on-tertiary-container": "#fffbff",
+                    "inverse-primary": "#c0c1ff",
+                    "inverse-surface": "#283044",
+                    "primary": "#4648d4",
+                    "on-primary-fixed": "#07006c",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#dae2fd",
+                    "secondary-fixed": "#e1e0ff",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "on-secondary-fixed-variant": "#404178",
+                    "on-background": "#131b2e",
+                    "background": "#faf8ff",
+                    "secondary-fixed-dim": "#c0c1ff",
+                    "on-secondary-container": "#494b83",
+                    "surface-container-low": "#f2f3ff",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eaedff",
+                    "primary-fixed": "#e1e0ff",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed": "#13144a",
+                    "on-secondary": "#ffffff",
+                    "outline": "#767586",
+                    "on-tertiary-fixed": "#301400",
+                    "error": "#ba1a1a",
+                    "surface": "#faf8ff",
+                    "surface-tint": "#494bd6",
+                    "on-primary-container": "#fffbff",
+                    "outline-variant": "#c7c4d7",
+                    "secondary-container": "#bdbefe",
+                    "primary-container": "#6063ee",
+                    "tertiary-fixed": "#ffdcc5",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-surface": "#131b2e",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#b55d00",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb783",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e2e7ff",
+                    "surface-container-highest": "#dae2fd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": [
+                            "Manrope"
+                    ],
+                    "body": [
+                            "Inter"
+                    ],
+                    "label": [
+                            "Inter"
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body h-screen w-full flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Shared Component: SideNavBar -->
+<nav class="bg-slate-50 dark:bg-slate-900 h-screen w-64 fixed left-0 top-0 tonal-layering bg-slate-100/50 dark:bg-slate-800/50 flat no-border tonal-depth flex flex-col p-4 gap-2 translate-x-1 duration-150 z-40 hidden md:flex">
+<!-- Header -->
+<div class="flex items-center gap-3 px-4 py-6 mb-4">
+<div class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-indigo-600 dark:text-indigo-400" style="font-variation-settings: 'FILL' 1;">assessment</span>
+</div>
+<div class="flex flex-col">
+<span class="font-manrope font-bold text-indigo-600 dark:text-indigo-400 text-lg leading-tight tracking-tight">DevSkill</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Precision Suite</span>
+</div>
+</div>
+<!-- Main Nav Links -->
+<div class="flex flex-col gap-1 flex-1">
+<!-- Inactive Tab 1 -->
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all rounded-md flex items-center gap-3 px-4 py-3 font-label text-[14px] font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">assessment</span>
+<span>Skill Audit</span>
+</a>
+<!-- Inactive Tab 2 -->
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all rounded-md flex items-center gap-3 px-4 py-3 font-label text-[14px] font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">insights</span>
+<span>Career Insights</span>
+</a>
+<!-- Inactive Tab 3 -->
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all rounded-md flex items-center gap-3 px-4 py-3 font-label text-[14px] font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">map</span>
+<span>Improvement Roadmap</span>
+</a>
+<!-- Active Tab 4 -->
+<a class="bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm rounded-md hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all flex items-center gap-3 px-4 py-3 font-label text-[14px] font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">description</span>
+<span>Resume Insights</span>
+</a>
+</div>
+<!-- Footer Nav Links -->
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 h-full overflow-y-auto bg-surface relative flex flex-col"><header class="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-outline-variant/10 bg-white px-8">
+<div class="flex items-center gap-3 md:hidden">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-100 shrink-0">
+<span class="material-symbols-outlined text-indigo-600" style="font-variation-settings: 'FILL' 1;">assessment</span>
+</div>
+<span class="font-manrope text-lg font-bold tracking-tight text-indigo-600">DevSkill</span>
+</div>
+<div class="flex-1 max-w-xl mx-auto md:mx-0">
+<div class="relative">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-lg border-none bg-slate-50 py-2 pl-10 pr-3 text-sm placeholder-slate-400 focus:bg-white focus:ring-2 focus:ring-indigo-500/20" placeholder="Search insights..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-50 text-[10px] font-bold text-indigo-600 border border-indigo-100 shrink-0 uppercase">
+      ME
+    </div>
+</div>
+</header>
+<!-- Top Ambient Gradient -->
+<div class="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-surface-variant/30 to-transparent pointer-events-none -z-10"></div>
+<div class="max-w-6xl mx-auto px-8 flex flex-col gap-12 py-8">
+<!-- Page Header -->
+<header class="flex flex-col gap-2">
+<h1 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Resume Insights</h1>
+<p class="text-on-surface-variant text-lg max-w-2xl">Structural analysis and strategic rewrites for your technical documentation.</p>
+</header>
+<!-- Section 1: Project Strategy (Bento Grid) -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline text-2xl font-bold text-on-surface tracking-tight">Project Strategy</h2>
+<span class="text-sm font-medium text-primary bg-primary-container/10 px-3 py-1 rounded-full border border-outline-variant/15">Impact Analysis Active</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- High-Impact Card (Takes up 2 columns) -->
+<div class="lg:col-span-2 bg-surface-container rounded-xl p-8 flex flex-col gap-6 relative overflow-hidden group hover:bg-surface-bright transition-colors duration-300 border border-outline-variant/15">
+<!-- Decorative gradient blob -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface">High-Impact Projects</h3>
+<p class="text-on-surface-variant text-sm mt-1">These entries strongly signal senior-level architectural capabilities. Prioritize their visibility.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 mt-2">
+<!-- Project Item 1 -->
+<div class="flex items-center justify-between p-4 bg-surface rounded-lg border border-outline-variant/15">
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-on-surface">Microservices Migration (E-commerce Core)</span>
+<span class="text-xs text-on-surface-variant">Keywords: Go, Kubernetes, Event-Driven Architecture</span>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="text-sm font-bold text-primary">92% Match</span>
+<span class="text-xs text-primary-fixed-dim bg-primary-fixed/20 px-2 py-0.5 rounded-full">Keep at top</span>
+</div>
+</div>
+<!-- Project Item 2 -->
+<div class="flex items-center justify-between p-4 bg-surface rounded-lg border border-outline-variant/15">
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-on-surface">Real-time Data Pipeline Engine</span>
+<span class="text-xs text-on-surface-variant">Keywords: Apache Kafka, Python, AWS Analytics</span>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="text-sm font-bold text-primary">88% Match</span>
+<span class="text-xs text-primary-fixed-dim bg-primary-fixed/20 px-2 py-0.5 rounded-full">Keep at top</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Optimization Needed Card -->
+<div class="bg-surface-container-low rounded-xl p-8 flex flex-col gap-6 border border-outline-variant/15">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">build</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface">Optimization Needed</h3>
+<p class="text-on-surface-variant text-sm mt-1">Projects requiring metric quantification.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 mt-2">
+<!-- Opt Item 1 -->
+<div class="flex flex-col gap-2 p-4 bg-surface rounded-lg border border-outline-variant/15">
+<span class="font-semibold text-on-surface text-sm">Internal Admin Dashboard</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[16px]">warning</span>
+<span class="text-xs text-on-surface-variant">Missing scale metrics. Add concurrent user stats.</span>
+</div>
+</div>
+<!-- Opt Item 2 -->
+<div class="flex flex-col gap-2 p-4 bg-surface rounded-lg border border-outline-variant/15">
+<span class="font-semibold text-on-surface text-sm">Legacy Code Refactor</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[16px]">warning</span>
+<span class="text-xs text-on-surface-variant">Vague impact. Quantify performance gain (e.g., % latency drop).</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Bullet Point Lab (Side-by-Side Comparison) -->
+<section class="flex flex-col gap-6 mt-8">
+<div class="flex flex-col gap-1">
+<h2 class="font-headline text-2xl font-bold text-on-surface tracking-tight">Bullet Point Lab</h2>
+<p class="text-on-surface-variant text-sm">Focus area: React capabilities &amp; state management.</p>
+</div>
+<!-- Comparison Container 1 -->
+<div class="flex flex-col md:flex-row gap-4 items-stretch">
+<!-- Before Card -->
+<div class="flex-1 bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/15 flex flex-col gap-3">
+<div class="flex items-center justify-between border-b border-outline-variant/15 pb-2 mb-2">
+<span class="text-xs font-bold tracking-widest uppercase text-on-surface-variant">Current Draft</span>
+<span class="material-symbols-outlined text-outline">history</span>
+</div>
+<p class="text-on-surface text-sm leading-relaxed">
+                            "Built a frontend using React and Redux to show user data from the backend API."
+                        </p>
+<div class="mt-auto pt-4 flex gap-2">
+<span class="px-2 py-1 bg-error-container/30 text-on-error-container text-[10px] rounded font-medium border border-error-container">Lacks Scale</span>
+<span class="px-2 py-1 bg-error-container/30 text-on-error-container text-[10px] rounded font-medium border border-error-container">Passive Language</span>
+</div>
+</div>
+<!-- Connector Arrow (Desktop) -->
+<div class="hidden md:flex flex-col items-center justify-center px-2">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center border border-outline-variant/15 shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">arrow_forward</span>
+</div>
+</div>
+<!-- After Card (The "Architect" rewrite) -->
+<div class="flex-1 bg-surface-container rounded-xl p-6 border border-outline-variant/15 flex flex-col gap-3 relative shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
+<!-- Left accent border -->
+<div class="absolute left-0 top-6 bottom-6 w-1 bg-primary rounded-r"></div>
+<div class="flex items-center justify-between border-b border-outline-variant/15 pb-2 mb-2 pl-3">
+<span class="text-xs font-bold tracking-widest uppercase text-primary">Optimized Rewrite</span>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<p class="text-on-surface text-sm leading-relaxed pl-3 font-medium">
+                            "Architected a highly responsive React/Redux SPA, consuming RESTful APIs to render real-time telemetry data for 10k+ concurrent sessions."
+                        </p>
+<div class="mt-auto pt-4 pl-3 flex gap-2">
+<span class="px-2 py-1 bg-primary-container/10 text-primary text-[10px] rounded font-medium border border-primary/20">Action Verbs</span>
+<span class="px-2 py-1 bg-primary-container/10 text-primary text-[10px] rounded font-medium border border-primary/20">Quantified Metrics</span>
+</div>
+</div>
+</div>
+<!-- Comparison Container 2 -->
+<div class="flex flex-col md:flex-row gap-4 items-stretch mt-4">
+<!-- Before Card -->
+<div class="flex-1 bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/15 flex flex-col gap-3">
+<div class="flex items-center justify-between border-b border-outline-variant/15 pb-2 mb-2">
+<span class="text-xs font-bold tracking-widest uppercase text-on-surface-variant">Current Draft</span>
+<span class="material-symbols-outlined text-outline">history</span>
+</div>
+<p class="text-on-surface text-sm leading-relaxed">
+                            "Updated older components to use React Hooks and improved the loading speed of the pages."
+                        </p>
+<div class="mt-auto pt-4 flex gap-2">
+<span class="px-2 py-1 bg-error-container/30 text-on-error-container text-[10px] rounded font-medium border border-error-container">Vague Impact</span>
+</div>
+</div>
+<!-- Connector Arrow (Desktop) -->
+<div class="hidden md:flex flex-col items-center justify-center px-2">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center border border-outline-variant/15 shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">arrow_forward</span>
+</div>
+</div>
+<!-- After Card -->
+<div class="flex-1 bg-surface-container rounded-xl p-6 border border-outline-variant/15 flex flex-col gap-3 relative shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
+<div class="absolute left-0 top-6 bottom-6 w-1 bg-primary rounded-r"></div>
+<div class="flex items-center justify-between border-b border-outline-variant/15 pb-2 mb-2 pl-3">
+<span class="text-xs font-bold tracking-widest uppercase text-primary">Optimized Rewrite</span>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<p class="text-on-surface text-sm leading-relaxed pl-3 font-medium">
+                            "Spearheaded migration of legacy class components to React Hooks, reducing bundle size by 15% and decreasing Time-to-Interactive (TTI) by 1.2s."
+                        </p>
+<div class="mt-auto pt-4 pl-3 flex gap-2">
+<span class="px-2 py-1 bg-primary-container/10 text-primary text-[10px] rounded font-medium border border-primary/20">Specific Tech</span>
+<span class="px-2 py-1 bg-primary-container/10 text-primary text-[10px] rounded font-medium border border-primary/20">Performance KPIs</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

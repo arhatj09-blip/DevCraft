@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevSkill Audit - Precision Engineering Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#703700",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d2d9f4",
+                      "on-surface-variant": "#464554",
+                      "secondary": "#575992",
+                      "tertiary": "#904900",
+                      "on-tertiary-container": "#fffbff",
+                      "inverse-primary": "#c0c1ff",
+                      "inverse-surface": "#283044",
+                      "primary": "#4648d4",
+                      "on-primary-fixed": "#07006c",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#dae2fd",
+                      "secondary-fixed": "#e1e0ff",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "on-secondary-fixed-variant": "#404178",
+                      "on-background": "#131b2e",
+                      "background": "#faf8ff",
+                      "secondary-fixed-dim": "#c0c1ff",
+                      "on-secondary-container": "#494b83",
+                      "surface-container-low": "#f2f3ff",
+                      "on-primary-fixed-variant": "#2f2ebe",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#eaedff",
+                      "primary-fixed": "#e1e0ff",
+                      "surface-bright": "#faf8ff",
+                      "on-secondary-fixed": "#13144a",
+                      "on-secondary": "#ffffff",
+                      "outline": "#767586",
+                      "on-tertiary-fixed": "#301400",
+                      "error": "#ba1a1a",
+                      "surface": "#faf8ff",
+                      "surface-tint": "#494bd6",
+                      "on-primary-container": "#fffbff",
+                      "outline-variant": "#c7c4d7",
+                      "secondary-container": "#bdbefe",
+                      "primary-container": "#6063ee",
+                      "tertiary-fixed": "#ffdcc5",
+                      "inverse-on-surface": "#eef0ff",
+                      "on-surface": "#131b2e",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-container": "#b55d00",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb783",
+                      "on-error-container": "#93000a",
+                      "surface-container-high": "#e2e7ff",
+                      "surface-container-highest": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Manrope", "sans-serif"
+                      ],
+                      "body": [
+                              "Inter", "sans-serif"
+                      ],
+                      "label": [
+                              "Inter", "sans-serif"
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #4648d4, #6063ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #4648d4, #6063ee);
+        }
+        .shadow-ambient {
+            box-shadow: 0 20px 60px -10px rgba(70, 72, 212, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md docked full-width top-0 z-50 flex items-center justify-between px-6 h-16 w-full shadow-[0_4px_30px_rgba(0,0,0,0.04)] no-border tonal-shift bg-slate-50 dark:bg-slate-900 sticky">
+<div class="flex items-center gap-8">
+<a class="font-headline font-black text-xl tracking-tight text-slate-900 dark:text-slate-50 flex items-center gap-2" href="#" style="">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style='font-variation-settings: "FILL" 1;'>assessment</span>
+                DevSkill Audit
+            </a>
+<!-- Nav Items (Desktop) -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-indigo-600 dark:text-indigo-400 font-semibold border-b-2 border-indigo-600 pb-1 text-sm font-label" href="#" style=""><br/></a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 text-sm font-label transition-colors" href="#" style=""><br/></a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 text-sm font-label transition-colors" href="#" style=""><br/></a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden ml-2 ring-2 ring-surface-container-highest cursor-pointer">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="Portrait of a young woman with a neutral expression, clean lighting, professional tech vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsZwK0sWCSHkGw-om4-cqg_v3m1o6Fc5VMVDmog48YrbypaOlRR04onsZHqSeU3hyKgwUzm1FGpuM8QbOs9K1TFcfZh7sL0eCdTGVRNdpR-l646k4ma5DWmM-iJOJP4wrSDQOdpLSaCU6jXNmIhktjLSRTyEMw2-Rs_XCSh5Z4FeQ-UbCw3QNJv2VDK1N-z3mHlTHlR3_chT9J9_7Bi4IDaYNq7g-JDyQWD86p6rRdHXUne6jiGHAgfRunL0drD-s6nob2lExcV_g" style=""/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8 relative z-10">
+<!-- Hero Section -->
+<div class="max-w-4xl w-full text-center mb-16">
+<h1 class="font-headline text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-tight" style="">
+                Analyze your real developer skill <br class="hidden md:block"/>
+<span class="text-gradient" style="">from your code</span>
+</h1>
+<p class="font-body text-lg sm:text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed" style="">
+                Get actionable insights from your GitHub projects and live apps. We parse your architecture, code quality, and deployment practices.
+            </p>
+</div>
+<!-- Audit Input Card -->
+<div class="w-full max-w-2xl bg-surface-container-lowest rounded-xl shadow-ambient p-8 sm:p-10 mb-16 relative overflow-hidden">
+<!-- Decorative blur -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<form class="space-y-6 relative z-10">
+<div class="space-y-2">
+<label class="block font-label text-sm font-semibold text-on-surface" for="github-url" style="">GitHub Repository URL</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant" style="">code</span>
+<input class="w-full bg-surface-container-low border-none rounded-DEFAULT pl-12 pr-4 py-3.5 text-on-surface font-body focus:ring-0 focus:outline-none transition-all placeholder:text-on-surface-variant/60" id="github-url" placeholder="https://github.com/username/project" type="url"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block font-label text-sm font-semibold text-on-surface" for="live-url" style="">Live App URL <span class="text-on-surface-variant/60 font-normal ml-1" style="">(Optional)</span></label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant" style="">language</span>
+<input class="w-full bg-surface-container-low border-none rounded-DEFAULT pl-12 pr-4 py-3.5 text-on-surface font-body focus:ring-0 focus:outline-none transition-all placeholder:text-on-surface-variant/60" id="live-url" placeholder="https://myapp.dev" type="url"/>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full bg-gradient-primary hover:opacity-90 text-on-primary font-label font-semibold py-4 rounded-DEFAULT shadow-sm transition-all flex items-center justify-center gap-2 group" style="" type="button">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="">model_training</span>
+                        Run Audit
+                    </button>
+<p class="text-center text-xs font-body text-on-surface-variant mt-4" style="">Audits typically take 45-60 seconds to process.</p>
+</div>
+</form>
+</div>
+<!-- Preview Card Section -->
+<div class="w-full max-w-3xl flex flex-col items-center">
+<div class="flex items-center gap-3 mb-6">
+<span class="h-px w-12 bg-outline-variant/30 block"></span>
+<span class="font-label text-xs tracking-widest uppercase text-on-surface-variant font-semibold" style="">Sample Result</span>
+<span class="h-px w-12 bg-outline-variant/30 block"></span>
+</div>
+<div class="w-full bg-surface-container-low rounded-xl p-8 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden">
+<!-- Score Block -->
+<div class="flex-shrink-0 flex flex-col items-center justify-center bg-surface-container-lowest rounded-lg p-6 w-full md:w-48 h-full shadow-sm">
+<div class="relative flex items-center justify-center w-24 h-24 mb-4">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="72, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="font-headline font-bold text-2xl text-on-surface" style="">7.2</span>
+</div>
+</div>
+<span class="font-headline font-bold text-on-surface text-center" style="">Intermediate<br/>Developer</span>
+</div>
+<!-- Insights Block -->
+<div class="flex-grow space-y-6 w-full">
+<div>
+<h3 class="font-headline font-semibold text-lg text-on-surface mb-4 flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-primary" style="">analytics</span>
+                            Architecture Assessment
+                        </h3>
+<div class="space-y-4">
+<!-- Strength -->
+<div class="bg-surface-container-lowest p-4 rounded-DEFAULT flex items-start gap-3 border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary mt-0.5" style="">verified</span>
+<div>
+<h4 class="font-label font-semibold text-sm text-on-surface mb-1" style="">Strong Component Modularity</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed" style="">
+                                        React components are well-isolated with clear boundaries. High reusability index detected across UI library.
+                                    </p>
+</div>
+</div>
+<!-- Weakness -->
+<div class="bg-surface-container-lowest p-4 rounded-DEFAULT flex items-start gap-3 border-l-4 border-tertiary">
+<span class="material-symbols-outlined text-tertiary mt-0.5" style="">warning</span>
+<div>
+<h4 class="font-label font-semibold text-sm text-on-surface mb-1" style="">State Management Bloat</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed" style="">
+                                        Over-reliance on global state for localized UI concerns. Consider moving transient state to component level.
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="mt-auto py-8 text-center text-sm font-body text-on-surface-variant bg-surface-container-lowest border-t border-surface-container">
+<p class="" style="">© 2024 DevSkill Audit. Precision tooling for developers.</p>
+</footer>
+</body></html>

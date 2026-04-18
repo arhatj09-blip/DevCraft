@@ -1,0 +1,251 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DevSkill Audit - Skill Improvement Roadmap</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#703700",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d2d9f4",
+                        "on-surface-variant": "#464554",
+                        "secondary": "#575992",
+                        "tertiary": "#904900",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-primary": "#c0c1ff",
+                        "inverse-surface": "#283044",
+                        "primary": "#4648d4",
+                        "on-primary-fixed": "#07006c",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#dae2fd",
+                        "secondary-fixed": "#e1e0ff",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary-fixed-variant": "#404178",
+                        "on-background": "#131b2e",
+                        "background": "#faf8ff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "on-secondary-container": "#494b83",
+                        "surface-container-low": "#f2f3ff",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eaedff",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#13144a",
+                        "on-secondary": "#ffffff",
+                        "outline": "#767586",
+                        "on-tertiary-fixed": "#301400",
+                        "error": "#ba1a1a",
+                        "surface": "#faf8ff",
+                        "surface-tint": "#494bd6",
+                        "on-primary-container": "#fffbff",
+                        "outline-variant": "#c7c4d7",
+                        "secondary-container": "#bdbefe",
+                        "primary-container": "#6063ee",
+                        "tertiary-fixed": "#ffdcc5",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-surface": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#b55d00",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-container-highest": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar Component -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex-col p-4 gap-2 z-40">
+<div class="px-3 py-6 mb-4">
+<h1 class="font-manrope font-bold text-indigo-600 dark:text-indigo-400 text-2xl tracking-tight" style="">DevSkill</h1>
+<p class="text-slate-500 text-xs font-label uppercase tracking-wider mt-1" style="">Precision Suite</p>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all" href="#" style="">
+<span class="material-symbols-outlined text-[20px]" style="">assessment</span>
+<span class="text-sm font-medium font-label" style="">Skill Audit</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all" href="#" style="">
+<span class="material-symbols-outlined text-[20px]" style="">insights</span>
+<span class="text-sm font-medium font-label" style="">Career Insights</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-3 py-2.5 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm rounded-md translate-x-1 duration-150" href="#" style="">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">map</span>
+<span class="text-sm font-semibold font-label" style="">Improvement Roadmap</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all" href="#" style="">
+<span class="material-symbols-outlined text-[20px]" style="">description</span>
+<span class="text-sm font-medium font-label" style="">Resume Insights</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-64 flex flex-col h-screen relative w-full">
+<!-- TopNavBar Component -->
+<header class="flex items-center justify-between px-6 h-16 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-md docked top-0 z-50 sticky shadow-[0_4px_30px_rgba(0,0,0,0.04)] no-border tonal-shift bg-slate-50 dark:bg-slate-900"><!-- Mobile Logo -->
+<div class="md:hidden font-manrope font-black text-xl tracking-tight text-slate-900 dark:text-slate-50" style="">
+    DevSkill Audit
+</div>
+<!-- Desktop Logo (hidden on mobile) -->
+<div class="hidden md:block">
+<h1 class="font-manrope font-bold text-indigo-600 dark:text-indigo-400 text-xl tracking-tight" style=""><br></h1>
+</div>
+<!-- Search Input Container (Middle) -->
+<div class="flex-1 max-w-xl px-8 hidden md:block">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-sm" style="">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-indigo-500/20 placeholder:text-slate-400 transition-all" placeholder="Search insights..." type="text">
+</div>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs" style="">
+        ME
+    </div>
+</div></header>
+<!-- Content Canvas -->
+<main class="flex-1 overflow-y-auto p-6 md:p-12 bg-surface">
+<div class="max-w-4xl mx-auto">
+<!-- Page Header -->
+<div class="mb-12">
+<h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-4" style="">
+                        Action Plan
+                    </h1>
+<p class="text-on-surface-variant text-lg max-w-2xl leading-relaxed" style="">
+                        Your optimized path to engineering excellence. Focused on high-impact areas derived from your recent architectural audit.
+                    </p>
+</div>
+<!-- Roadmap Container -->
+<div class="flex flex-col gap-8 relative">
+<!-- Subtle vertical timeline connector (architectural line) -->
+<div class="hidden md:block absolute left-8 top-8 bottom-8 w-[2px] bg-surface-container-high rounded-full -z-10"></div>
+<!-- Priority 1: Automated Testing -->
+<div class="bg-surface-container rounded-lg p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 relative group">
+<!-- Architect Accent -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-primary-container rounded-l-lg opacity-80"></div>
+<div class="md:w-1/3 shrink-0 flex flex-col items-start">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-fixed text-on-primary-fixed text-xs font-bold font-label rounded-full mb-4" style="">
+<span class="material-symbols-outlined text-[14px]" style="">calendar_today</span>
+                                Week 1-2
+                            </span>
+<h2 class="font-headline text-2xl font-bold text-on-surface mb-2 leading-tight" style="">Automated Testing</h2>
+<span class="inline-block px-2 py-0.5 bg-tertiary-container/10 text-tertiary text-xs font-semibold rounded mt-1" style="">Priority: High</span>
+</div>
+<div class="flex-1 flex flex-col gap-5">
+<div class="bg-surface-container-lowest p-5 rounded-lg">
+<h3 class="flex items-center gap-2 text-sm font-bold text-on-surface mb-2 font-headline uppercase tracking-wide" style="">
+<span class="material-symbols-outlined text-[18px] text-secondary" style="">psychology</span>
+                                    Why it matters
+                                </h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" style="">
+                                    Your recent projects show a high density of manual QA loops. Implementing a robust suite of unit and integration tests will reduce regressions by an estimated 40% and accelerate deployment cycles, solidifying architectural stability.
+                                </p>
+</div>
+<div class="bg-surface-bright p-5 rounded-lg border border-outline-variant/15">
+<h3 class="flex items-center gap-2 text-sm font-bold text-on-surface mb-2 font-headline uppercase tracking-wide" style="">
+<span class="material-symbols-outlined text-[18px] text-primary" style="">play_arrow</span>
+                                    Action Step
+                                </h3>
+<p class="text-on-surface text-sm font-medium" style="">
+                                    Initialize Jest in your primary repository and write tests for the top 3 most frequently modified utility functions.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Priority 2: API Integration Layer -->
+<div class="bg-surface-container rounded-lg p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 relative">
+<div class="md:w-1/3 shrink-0 flex flex-col items-start">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary-fixed text-on-secondary-fixed text-xs font-bold font-label rounded-full mb-4" style="">
+<span class="material-symbols-outlined text-[14px]" style="">calendar_today</span>
+                                Week 3-4
+                            </span>
+<h2 class="font-headline text-2xl font-bold text-on-surface mb-2 leading-tight" style="">API Integration Layer</h2>
+<span class="inline-block px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-xs font-semibold rounded mt-1" style="">Priority: Medium</span>
+</div>
+<div class="flex-1 flex flex-col gap-5">
+<div class="bg-surface-container-lowest p-5 rounded-lg">
+<h3 class="flex items-center gap-2 text-sm font-bold text-on-surface mb-2 font-headline uppercase tracking-wide" style="">
+<span class="material-symbols-outlined text-[18px] text-secondary" style="">psychology</span>
+                                    Why it matters
+                                </h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" style="">
+                                    Current API calls are scattered across UI components. Centralizing data fetching into a dedicated integration layer (e.g., using React Query or a custom service class) will drastically improve cache management and decouple UI from network logic.
+                                </p>
+</div>
+<div class="bg-surface-bright p-5 rounded-lg border border-outline-variant/15">
+<h3 class="flex items-center gap-2 text-sm font-bold text-on-surface mb-2 font-headline uppercase tracking-wide" style="">
+<span class="material-symbols-outlined text-[18px] text-primary" style="">play_arrow</span>
+                                    Action Step
+                                </h3>
+<p class="text-on-surface text-sm font-medium" style="">
+                                    Refactor the 'User Profile' module to fetch data via a centralized service function rather than inline fetch calls.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Priority 3: Standardize Design Tokens -->
+<div class="bg-surface-container rounded-lg p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 relative">
+<div class="md:w-1/3 shrink-0 flex flex-col items-start">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-variant text-on-surface-variant text-xs font-bold font-label rounded-full mb-4" style="">
+<span class="material-symbols-outlined text-[14px]" style="">calendar_today</span>
+                                Week 5
+                            </span>
+<h2 class="font-headline text-2xl font-bold text-on-surface mb-2 leading-tight" style="">Standardize Design Tokens</h2>
+</div>
+<div class="flex-1 flex flex-col gap-5">
+<div class="bg-surface-container-lowest p-5 rounded-lg">
+<h3 class="flex items-center gap-2 text-sm font-bold text-on-surface mb-2 font-headline uppercase tracking-wide" style="">
+<span class="material-symbols-outlined text-[18px] text-secondary" style="">psychology</span>
+                                    Why it matters
+                                </h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" style="">
+                                    Hardcoded hex values are causing UI inconsistencies. Implementing a strict token system aligns the codebase with 'The Precision Architect' design philosophy and makes future theming seamless.
+                                </p>
+</div>
+<div class="bg-surface-bright p-5 rounded-lg border border-outline-variant/15">
+<h3 class="flex items-center gap-2 text-sm font-bold text-on-surface mb-2 font-headline uppercase tracking-wide" style="">
+<span class="material-symbols-outlined text-[18px] text-primary" style="">play_arrow</span>
+                                    Action Step
+                                </h3>
+<p class="text-on-surface text-sm font-medium" style="">
+                                    Extract all hardcoded colors in the 'Dashboard' view into the Tailwind configuration and update the component classes.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
