@@ -78,65 +78,235 @@
         }
     </script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+main, header, nav {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.flex-1 > * {
+  animation: slideInUp 0.6s ease-in-out forwards;
+  animation-fill-mode: both;
+}
+
+/* Smooth transitions for interactive elements */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+a, button, input {
+  transition: all 0.3s ease;
+}
+
+/* Page content fade-in */
+.overflow-y-auto {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Navigation link transitions - smooth color and background changes */
+a.flex.items-center {
+  position: relative;
+  overflow: hidden;
+}
+
+a.flex.items-center::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(129, 140, 248, 0.05);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+a.flex.items-center:hover::before {
+  opacity: 1;
+}
+
+/* Reduce paint operations and improve performance */
+header, main, nav {
+  will-change: opacity;
+}
+
+/* Smooth scrolling for all browsers */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize animations for reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile sidebar styles */
+.sidebar-mobile {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 16rem;
+  height: 100vh;
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
+}
+
+.sidebar-mobile.active {
+  transform: translateX(0);
+  display: flex !important;
+}
+
+/* Show sidebar on desktop */
+@media (min-width: 768px) {
+  .sidebar-mobile {
+    display: flex !important;
+    transform: translateX(0) !important;
+  }
+}
+
+/* Overlay for mobile */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 40;
+}
+
+.sidebar-overlay.active {
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hamburger menu animation */
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger-btn span {
+  width: 1.5rem;
+  height: 0.1875rem;
+  background-color: currentColor;
+  border-radius: 0.125rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(0.625rem, 0.625rem);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-0.25rem);
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(0.4375rem, -0.4375rem);
+}
+</style>
 </head>
 <body class="bg-surface text-on-surface font-body antialiased flex h-screen overflow-hidden">
+<!-- Sidebar Overlay (Mobile Only) -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+<div class="flex h-screen w-full">
 <!-- SideNavBar Component -->
-<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex-col p-4 gap-2 z-40">
-<div class="px-3 py-6 mb-4">
-<h1 class="font-manrope font-bold text-indigo-600 dark:text-indigo-400 text-2xl tracking-tight" style="">DevSkill</h1>
-<p class="text-slate-500 text-xs font-label uppercase tracking-wider mt-1" style="">Precision Suite</p>
+<nav id="sidebar" class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex-col p-4 gap-2 z-40 sidebar-mobile">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline font-bold text-lg" style="">D</div>
+<div>
+<h1 class="font-manrope font-bold text-indigo-600 dark:text-indigo-400 text-lg leading-none" style="">DevSkill</h1>
+<span class="text-xs text-on-surface-variant" style="">Precision Suite</span>
+</div>
 </div>
 <div class="flex flex-col gap-1 flex-1">
-<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all" href="#" style="">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200" href="results_dashboard.html" style="">
 <span class="material-symbols-outlined text-[20px]" style="">assessment</span>
-<span class="text-sm font-medium font-label" style="">Skill Audit</span>
+<span class="font-label text-sm font-medium" style="">Skill Audit</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all" href="#" style="">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200" href="career_insights.html" style="">
 <span class="material-symbols-outlined text-[20px]" style="">insights</span>
-<span class="text-sm font-medium font-label" style="">Career Insights</span>
+<span class="font-label text-sm font-medium" style="">Career Insights</span>
 </a>
 <!-- Active Tab -->
-<a class="flex items-center gap-3 px-3 py-2.5 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm rounded-md translate-x-1 duration-150" href="#" style="">
+<a class="flex items-center gap-3 px-3 py-2.5 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm rounded-md transition-all translate-x-1 duration-150" href="skill_improvement_roadmap.html" style="">
 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">map</span>
-<span class="text-sm font-semibold font-label" style="">Improvement Roadmap</span>
+<span class="font-label text-sm font-medium" style="">Improvement Roadmap</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all" href="#" style="">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200" href="resume_insights.html" style="">
 <span class="material-symbols-outlined text-[20px]" style="">description</span>
-<span class="text-sm font-medium font-label" style="">Resume Insights</span>
+<span class="font-label text-sm font-medium" style="">Resume Insights</span>
 </a>
 </div>
 </nav>
 <!-- Main Content Area -->
-<div class="flex-1 md:ml-64 flex flex-col h-screen relative w-full">
+<main class="flex-1 flex flex-col md:ml-64 relative h-screen">
 <!-- TopNavBar Component -->
-<header class="flex items-center justify-between px-6 h-16 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-md docked top-0 z-50 sticky shadow-[0_4px_30px_rgba(0,0,0,0.04)] no-border tonal-shift bg-slate-50 dark:bg-slate-900"><!-- Mobile Logo -->
-<div class="md:hidden font-manrope font-black text-xl tracking-tight text-slate-900 dark:text-slate-50" style="">
-    DevSkill Audit
-</div>
-<!-- Desktop Logo (hidden on mobile) -->
-<div class="hidden md:block">
-<h1 class="font-manrope font-bold text-indigo-600 dark:text-indigo-400 text-xl tracking-tight" style=""><br></h1>
-</div>
-<!-- Search Input Container (Middle) -->
-<div class="flex-1 max-w-xl px-8 hidden md:block">
+<header class="sticky top-0 z-50 flex h-16 w-full items-center justify-between bg-white/80 dark:bg-slate-950/80 backdrop-blur-md px-6 shadow-[0_4px_30px_rgba(0,0,0,0.04)]">
+<!-- Hamburger Menu (Mobile Only) -->
+<button id="hamburgerBtn" class="hamburger-btn flex md:hidden text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<!-- Left Spacing -->
+<div class="flex-1 hidden md:block"></div>
+<!-- Search Bar (Center) -->
+<div class="flex-1 max-w-xl">
 <div class="relative flex items-center">
-<span class="material-symbols-outlined absolute left-3 text-slate-400 text-sm" style="">search</span>
-<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-indigo-500/20 placeholder:text-slate-400 transition-all" placeholder="Search insights..." type="text">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-[20px]" style="">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm placeholder-slate-400 focus:ring-2 focus:ring-primary/40 transition-all text-slate-900 dark:text-slate-100" placeholder="Search insights..." type="text">
 </div>
 </div>
-<!-- Right Actions -->
-<div class="flex items-center gap-4">
-<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs" style="">
-        ME
-    </div>
-</div></header>
+<!-- Profile Avatar (Right) -->
+<div class="flex-1 flex justify-end">
+<div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs">
+ME
+</div>
+</div>
+</header>
 <!-- Content Canvas -->
-<main class="flex-1 overflow-y-auto p-6 md:p-12 bg-surface">
-<div class="max-w-4xl mx-auto">
+<div class="flex-1 overflow-y-auto pt-20 pb-12 px-6 lg:px-12 bg-surface w-full">
+<div class="max-w-6xl mx-auto space-y-8">
 <!-- Page Header -->
 <div class="mb-12">
 <h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-4" style="">
@@ -248,4 +418,43 @@
 </div>
 </main>
 </div>
+<script>
+  // Mobile sidebar toggle functionality
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const sidebar = document.getElementById('sidebar');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+  const navLinks = sidebar?.querySelectorAll('a.flex.items-center') || [];
+
+  // Toggle sidebar on hamburger click
+  hamburgerBtn?.addEventListener('click', () => {
+    hamburgerBtn.classList.toggle('active');
+    sidebar?.classList.toggle('active');
+    sidebarOverlay?.classList.toggle('active');
+  });
+
+  // Close sidebar when overlay is clicked
+  sidebarOverlay?.addEventListener('click', () => {
+    hamburgerBtn?.classList.remove('active');
+    sidebar?.classList.remove('active');
+    sidebarOverlay?.classList.remove('active');
+  });
+
+  // Close sidebar when a navigation link is clicked
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburgerBtn?.classList.remove('active');
+      sidebar?.classList.remove('active');
+      sidebarOverlay?.classList.remove('active');
+    });
+  });
+
+  // Close sidebar on window resize (when reaching md breakpoint)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      hamburgerBtn?.classList.remove('active');
+      sidebar?.classList.remove('active');
+      sidebarOverlay?.classList.remove('active');
+    }
+  });
+</script>
 </body></html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Register - DevSkill</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#703700",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d2d9f4",
+                        "on-surface-variant": "#464554",
+                        "secondary": "#575992",
+                        "tertiary": "#904900",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-primary": "#c0c1ff",
+                        "inverse-surface": "#283044",
+                        "primary": "#4648d4",
+                        "on-primary-fixed": "#07006c",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#dae2fd",
+                        "secondary-fixed": "#e1e0ff",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary-fixed-variant": "#404178",
+                        "on-background": "#131b2e",
+                        "background": "#faf8ff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "on-secondary-container": "#494b83",
+                        "surface-container-low": "#f2f3ff",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eaedff",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#13144a",
+                        "on-secondary": "#ffffff",
+                        "outline": "#767586",
+                        "on-tertiary-fixed": "#301400",
+                        "error": "#ba1a1a",
+                        "surface": "#faf8ff",
+                        "surface-tint": "#494bd6",
+                        "on-primary-container": "#fffbff",
+                        "outline-variant": "#c7c4d7",
+                        "secondary-container": "#bdbefe",
+                        "primary-container": "#6063ee",
+                        "tertiary-fixed": "#ffdcc5",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-surface": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#b55d00",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-container-highest": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .form-container {
+            animation: slideInUp 0.6s ease-in-out forwards;
+        }
+
+        .form-group {
+            animation: slideInUp 0.6s ease-in-out forwards;
+        }
+
+        .form-input {
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(70, 72, 212, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #4648d4;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #2f2ebe;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(70, 72, 212, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #dae2fd;
+            border-radius: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: #131b2e;
+            background-color: #faf8ff;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4648d4;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(70, 72, 212, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: #464554;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body">
+    <div class="min-h-screen flex items-center justify-center px-4 py-12">
+        <div class="w-full max-w-md">
+            <!-- Logo and Branding -->
+            <div class="text-center mb-12 form-container">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline font-bold text-2xl shadow-lg">
+                        D
+                    </div>
+                </div>
+                <h1 class="font-headline text-3xl font-bold text-on-surface mb-2">DevSkill</h1>
+                <p class="text-on-surface-variant text-sm">Create your account</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form class="space-y-6 form-container" onsubmit="handleRegister(event)">
+                <!-- Name Input -->
+                <div class="form-group">
+                    <label for="name" class="block text-sm font-medium text-on-surface mb-2">Full Name</label>
+                    <input
+                        id="name"
+                        type="text"
+                        placeholder="John Doe"
+                        class="input-field"
+                        required
+                        autocomplete="name"
+                    />
+                </div>
+
+                <!-- Email Input -->
+                <div class="form-group">
+                    <label for="email" class="block text-sm font-medium text-on-surface mb-2">Email Address</label>
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="you@example.com"
+                        class="input-field"
+                        required
+                        autocomplete="email"
+                    />
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <label for="password" class="block text-sm font-medium text-on-surface mb-2">Password</label>
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="••••••••"
+                        class="input-field"
+                        required
+                        autocomplete="new-password"
+                        minlength="8"
+                    />
+                    <p class="text-xs text-on-surface-variant mt-1">At least 8 characters</p>
+                </div>
+
+                <!-- Confirm Password Input -->
+                <div class="form-group">
+                    <label for="confirm-password" class="block text-sm font-medium text-on-surface mb-2">Confirm Password</label>
+                    <input
+                        id="confirm-password"
+                        type="password"
+                        placeholder="••••••••"
+                        class="input-field"
+                        required
+                        autocomplete="new-password"
+                    />
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="flex items-start gap-2 form-group">
+                    <input
+                        id="terms"
+                        type="checkbox"
+                        class="w-4 h-4 mt-1 rounded border-outline cursor-pointer"
+                        required
+                    />
+                    <label for="terms" class="text-sm text-on-surface-variant">
+                        I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                    type="submit"
+                    class="w-full btn-primary py-3 rounded-lg font-semibold text-sm transition-all duration-300 form-group"
+                >
+                    Create Account
+                </button>
+            </form>
+
+            <!-- Login Link -->
+            <div class="text-center mt-8 form-container">
+                <p class="text-sm text-on-surface-variant">
+                    Already have an account?
+                    <a href="login.html" class="text-primary font-semibold hover:underline">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long!');
+                return;
+            }
+
+            console.log('Registration submitted:', { name, email, password });
+            alert('Account created successfully! Redirecting to login...');
+            
+            // Redirect to login page
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
