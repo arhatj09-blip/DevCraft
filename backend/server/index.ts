@@ -8,6 +8,13 @@ const __dirname = path.dirname(__filename);
 
 const backendEnvPath = path.resolve(__dirname, "..", ".env");
 const rootEnvPath = path.resolve(__dirname, "..", "..", ".env");
+const frontendDistPath = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  "frontend",
+  "dist",
+);
 
 // Prefer backend/.env to keep API config isolated; fallback to root .env.
 dotenv.config({
@@ -21,7 +28,7 @@ dotenv.config({
 });
 
 const port = Number(process.env.PORT ?? 8787);
-const app = createApp();
+const app = createApp({ frontendDistPath });
 
 app.listen(port, () => {
   console.log(`[server] listening on http://localhost:${port}`);

@@ -1,16 +1,89 @@
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { api } from "../services/api";
+import { mapApiErrorToRoute, toErrorRoute } from "../utils/errorRoute";
+
 function DashboardView() {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [report, setReport] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const jobId = searchParams.get("jobId");
+
+  useEffect(() => {
+    let stopped = false;
+
+    async function loadResult() {
+      if (!jobId) {
+        navigate(
+          toErrorRoute({
+            code: 400,
+            message:
+              "Missing audit job ID. Start an audit from the landing page.",
+            retry: false,
+          }),
+          { replace: true },
+        );
+        return;
+      }
+
+      try {
+        const result = await api.getAuditResult(jobId);
+        if (!stopped) {
+          setReport(result);
+          setError("");
+        }
+      } catch (apiError) {
+        if (!stopped) {
+          navigate(
+            mapApiErrorToRoute(apiError, "Failed to load dashboard result", {
+              retry: false,
+            }),
+            { replace: true },
+          );
+        }
+      } finally {
+        if (!stopped) {
+          setLoading(false);
+        }
+      }
+    }
+
+    void loadResult();
+
+    return () => {
+      stopped = true;
+    };
+  }, [jobId, navigate]);
+
+  const computed = useMemo(() => {
+    const score = report?.summary?.score ?? 7.2;
+    const level = report?.summary?.level ?? "Intermediate";
+    const verdict =
+      report?.summary?.verdict ||
+      "Strong frontend architecture, but critical gaps in backend security and testing.";
+    const strengths = report?.strengths ?? [];
+    const weaknesses = report?.weaknesses ?? [];
+    return {
+      score,
+      level,
+      verdict,
+      strengths,
+      weaknesses,
+    };
+  }, [report]);
+
   return (
     <div className="sovereign-dashboard">
       <section className="sovereign-hero-grid">
         <div className="sovereign-hero-copy">
           <span className="sovereign-tag">Candidate Audit Report</span>
           <h2>
-            Strong <span>Intermediate</span>
+            Strong <span>{computed.level}</span>
           </h2>
-          <p>
-            Strong frontend architecture, but critical gaps in backend security
-            and testing.
-          </p>
+          <p>{computed.verdict}</p>
           <div className="sovereign-hero-actions">
             <button type="button" className="sovereign-btn-primary">
               Generate PDF Report
@@ -24,11 +97,23 @@ function DashboardView() {
         <div className="sovereign-score-wrap">
           <div className="sovereign-score-ring" aria-hidden />
           <div className="sovereign-score-inner">
-            <strong>7.2</strong>
+            <strong>{computed.score}</strong>
             <span>Aggregate Score</span>
           </div>
         </div>
       </section>
+
+      {loading ? (
+        <section className="panel">
+          <p>Loading dashboard data...</p>
+        </section>
+      ) : null}
+
+      {error ? (
+        <section className="panel">
+          <p>{error}</p>
+        </section>
+      ) : null}
 
       <section className="sovereign-bento-grid">
         <article className="sovereign-card strengths">
@@ -37,36 +122,17 @@ function DashboardView() {
             <span className="material-symbols-outlined">verified_user</span>
           </div>
           <div className="sovereign-bullets">
-            <div>
-              <span />
-              <div>
-                <p>Component Composition</p>
-                <small>
-                  Excellent use of atomic design and headless UI patterns across
-                  repositories.
-                </small>
-              </div>
-            </div>
-            <div>
-              <span />
-              <div>
-                <p>TypeScript Strictness</p>
-                <small>
-                  0% use of any type in production-ready files. Superior type
-                  inference.
-                </small>
-              </div>
-            </div>
-            <div>
-              <span />
-              <div>
-                <p>Consistent Commits</p>
-                <small>
-                  Daily cadence maintained for 120+ days with meaningful PR
-                  descriptions.
-                </small>
-              </div>
-            </div>
+            {computed.strengths.length > 0
+              ? computed.strengths.slice(0, 3).map((strength) => (
+                  <div key={strength.title}>
+                    <span />
+                    <div>
+                      <p>{strength.title}</p>
+                      <small>{strength.evidence}</small>
+                    </div>
+                  </div>
+                ))
+              : null}
           </div>
         </article>
 
@@ -76,22 +142,17 @@ function DashboardView() {
             <span className="material-symbols-outlined">warning</span>
           </div>
           <div className="sovereign-risks">
-            <div>
-              <p>
-                Zero Test Coverage <em>HIGH RISK</em>
-              </p>
-              <small>
-                Why: reliability not validated through unit or e2e suites.
-              </small>
-            </div>
-            <div>
-              <p>
-                API Security Flaws <em>SECURITY</em>
-              </p>
-              <small>
-                Why: insecure JWT patterns and missing CORS headers.
-              </small>
-            </div>
+            {computed.weaknesses.length > 0
+              ? computed.weaknesses.slice(0, 2).map((weakness) => (
+                  <div key={weakness.title}>
+                    <p>
+                      {weakness.title}{" "}
+                      <em>{(weakness.priority || "high").toUpperCase()}</em>
+                    </p>
+                    <small>{weakness.whyItMatters}</small>
+                  </div>
+                ))
+              : null}
           </div>
         </article>
       </section>

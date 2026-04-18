@@ -11,6 +11,7 @@ function AppLayout() {
     "/loading",
     "/roadmap",
     "/resume-insights",
+    "/error",
   ].includes(location.pathname);
 
   if (isImmersiveView) {

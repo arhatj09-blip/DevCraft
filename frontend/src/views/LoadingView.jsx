@@ -1,34 +1,109 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { api } from "../services/api";
+import { mapApiErrorToRoute } from "../utils/errorRoute";
 
 function LoadingView() {
   const navigate = useNavigate();
-  const [progress, setProgress] = useState(20);
+  const [searchParams] = useSearchParams();
+  const [progress, setProgress] = useState(0);
   const [activeStep, setActiveStep] = useState(2);
+  const [statusMessage, setStatusMessage] = useState(
+    "Initializing audit pipeline...",
+  );
+  const [errorMessage] = useState("");
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setProgress((prev) => {
-        const next = Math.min(prev + Math.floor(Math.random() * 10), 100);
-        if (next > 36) {
-          setActiveStep(3);
-        }
-        if (next > 72) {
-          setActiveStep(4);
-        }
-        if (next > 92) {
-          setActiveStep(5);
-        }
-        if (next >= 100) {
-          window.clearInterval(timer);
-          window.setTimeout(() => navigate("/dashboard"), 600);
-        }
-        return next;
-      });
-    }, 420);
+    let stopped = false;
 
-    return () => window.clearInterval(timer);
-  }, [navigate]);
+    function computeActiveStep(steps) {
+      const active = steps.findIndex((step) => step.status === "active");
+      if (active >= 0) return active + 1;
+
+      const doneCount = steps.filter((step) => step.status === "done").length;
+      return Math.max(1, Math.min(5, doneCount + 1));
+    }
+
+    async function runAudit() {
+      const githubUrl = searchParams.get("githubUrl")?.trim() || "";
+      const liveUrl = searchParams.get("liveUrl")?.trim() || "";
+
+      if (!githubUrl && !liveUrl) {
+        navigate("/landing", { replace: true });
+        return;
+      }
+
+      try {
+        setStatusMessage("Creating audit job...");
+        const started = await api.startAudit({
+          githubUrl,
+          liveAppUrl: liveUrl,
+        });
+
+        const jobId = started.jobId;
+        if (!jobId) {
+          throw new Error("Backend did not return a valid job ID");
+        }
+
+        const poll = async () => {
+          const status = await api.getAuditStatus(jobId);
+          if (stopped) return;
+
+          setProgress(Math.max(5, Math.min(99, status.progress ?? 5)));
+          setActiveStep(computeActiveStep(status.steps || []));
+          setStatusMessage(
+            status.message || "Analyzing real-world code signals...",
+          );
+
+          if (status.status === "failed") {
+            throw new Error(status.message || "Audit failed");
+          }
+
+          if (status.status === "completed") {
+            setProgress(100);
+            window.setTimeout(() => {
+              if (!stopped) {
+                navigate(`/dashboard?jobId=${jobId}`, { replace: true });
+              }
+            }, 400);
+            return;
+          }
+
+          window.setTimeout(async () => {
+            try {
+              await poll();
+            } catch (error) {
+              if (!stopped) {
+                navigate(
+                  mapApiErrorToRoute(error, "Failed to poll audit status", {
+                    retry: true,
+                  }),
+                  { replace: true },
+                );
+              }
+            }
+          }, 1200);
+        };
+
+        await poll();
+      } catch (error) {
+        if (!stopped) {
+          navigate(
+            mapApiErrorToRoute(error, "Failed to start audit", {
+              retry: true,
+            }),
+            { replace: true },
+          );
+        }
+      }
+    }
+
+    void runAudit();
+
+    return () => {
+      stopped = true;
+    };
+  }, [navigate, searchParams]);
 
   return (
     <div className="loading-immersive">
@@ -70,9 +145,7 @@ function LoadingView() {
             </div>
           </div>
 
-          <p className="loading-subtext">
-            Analyzing real-world code signals...
-          </p>
+          <p className="loading-subtext">{errorMessage || statusMessage}</p>
 
           <div className="loading-steps">
             <article

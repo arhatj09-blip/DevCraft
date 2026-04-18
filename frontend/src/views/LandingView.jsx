@@ -1,9 +1,53 @@
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../state/AppState";
+import { api } from "../services/api";
+import AuthInput from "../components/auth/AuthInput";
+import PasswordStrengthMeter from "../components/auth/PasswordStrengthMeter";
+import { validateAuthForm } from "../utils/authValidation";
 
 function LandingView() {
   const navigate = useNavigate();
   const { auditInput, setAuditInput, pushToast } = useAppState();
+  const [authMode, setAuthMode] = useState("login");
+  const [authBusy, setAuthBusy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [authFeedback, setAuthFeedback] = useState({
+    type: "",
+    message: "",
+  });
+  const [authTouched, setAuthTouched] = useState({
+    name: false,
+    email: false,
+    password: false,
+    termsAccepted: false,
+  });
+  const [authForm, setAuthForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    termsAccepted: false,
+  });
+
+  const authValidation = useMemo(
+    () => validateAuthForm(authForm, authMode),
+    [authForm, authMode],
+  );
+
+  const authCanSubmit = authValidation.isValid && !authBusy;
+
+  const onAuthFieldChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    setAuthForm((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const onAuthFieldBlur = (event) => {
+    const { name } = event.target;
+    setAuthTouched((prev) => ({ ...prev, [name]: true }));
+  };
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -12,10 +56,81 @@ function LandingView() {
     }
   };
 
+  const startAuditFlow = () => {
+    const githubUrl = auditInput.githubUrl?.trim();
+    const liveUrl = auditInput.liveUrl?.trim();
+
+    if (!githubUrl && !liveUrl) {
+      pushToast("Please enter a GitHub or live app URL");
+      return;
+    }
+
+    const params = new URLSearchParams();
+    if (githubUrl) params.set("githubUrl", githubUrl);
+    if (liveUrl) params.set("liveUrl", liveUrl);
+
+    pushToast("Audit request queued");
+    navigate(`/loading?${params.toString()}`);
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
-    pushToast("Audit request queued");
-    navigate("/loading");
+    startAuditFlow();
+  };
+
+  const onAuthSubmit = async (event) => {
+    event.preventDefault();
+
+    setAuthTouched({
+      name: true,
+      email: true,
+      password: true,
+      termsAccepted: true,
+    });
+
+    if (!authValidation.isValid) {
+      setAuthFeedback({
+        type: "error",
+        message: "Please fix highlighted fields and try again.",
+      });
+      return;
+    }
+
+    setAuthFeedback({ type: "", message: "" });
+    setAuthBusy(true);
+
+    try {
+      const payload = {
+        email: authForm.email.trim(),
+        password: authForm.password,
+        name:
+          authMode === "signup" ? authForm.name.trim() || undefined : undefined,
+      };
+
+      if (authMode === "signup") {
+        await api.signup(payload);
+        pushToast("Signup successful. You can now login.");
+        setAuthFeedback({
+          type: "success",
+          message: "Account created. Please sign in.",
+        });
+        setAuthMode("login");
+        setShowPassword(false);
+      } else {
+        await api.login(payload);
+        pushToast("Login successful");
+        setAuthFeedback({
+          type: "success",
+          message: "Login successful. Your workspace is ready.",
+        });
+      }
+    } catch (error) {
+      const message = error?.message || "Authentication failed";
+      setAuthFeedback({ type: "error", message });
+      pushToast(message);
+    } finally {
+      setAuthBusy(false);
+    }
   };
 
   return (
@@ -41,14 +156,16 @@ function LandingView() {
             <button
               type="button"
               className="landing-signin-btn"
-              onClick={() => navigate("/loading")}
+              onClick={() =>
+                setAuthMode((prev) => (prev === "login" ? "signup" : "login"))
+              }
             >
-              Start Audit
+              {authMode === "login" ? "Create Account" : "Sign In"}
             </button>
             <button
               type="button"
               className="landing-run-btn"
-              onClick={onSubmit}
+              onClick={startAuditFlow}
             >
               Run Free Audit
             </button>
@@ -65,8 +182,11 @@ function LandingView() {
             <span>Now in Beta for GitHub</span>
           </div>
 
-          <h1>
-            Analyze your real developer skill from your <span>code</span>
+          <h1 className="landing-headline">
+            Analyze your real developer skill from your{" "}
+            <span className="landing-code-chip" aria-label="code">
+              &lt;code/&gt;
+            </span>
           </h1>
           <p>Get actionable insights from your GitHub projects and live apps</p>
 
@@ -81,7 +201,6 @@ function LandingView() {
                   githubUrl: e.target.value,
                 }))
               }
-              required
             />
             <input
               type="url"
@@ -96,6 +215,167 @@ function LandingView() {
               Run Audit
             </button>
           </form>
+
+          <section className="landing-auth-card" aria-label="Account access">
+            <div className="landing-auth-head">
+              <p>
+                {authMode === "signup" ? "Create your account" : "Welcome back"}
+              </p>
+              <h3>
+                {authMode === "signup"
+                  ? "Start your skill journey"
+                  : "Sign in to continue"}
+              </h3>
+            </div>
+
+            <form className="landing-auth-form" onSubmit={onAuthSubmit}>
+              {authMode === "signup" ? (
+                <AuthInput
+                  id="name"
+                  label="Full name"
+                  icon="badge"
+                  value={authForm.name}
+                  onChange={onAuthFieldChange}
+                  onBlur={onAuthFieldBlur}
+                  touched={authTouched.name}
+                  error={authValidation.errors.name}
+                  autoComplete="name"
+                  required
+                />
+              ) : null}
+
+              <AuthInput
+                id="email"
+                type="email"
+                label="Work email"
+                icon="mail"
+                value={authForm.email}
+                onChange={onAuthFieldChange}
+                onBlur={onAuthFieldBlur}
+                touched={authTouched.email}
+                error={authValidation.errors.email}
+                autoComplete="email"
+                required
+              />
+
+              <AuthInput
+                id="password"
+                type={showPassword ? "text" : "password"}
+                label="Password"
+                icon="lock"
+                value={authForm.password}
+                onChange={onAuthFieldChange}
+                onBlur={onAuthFieldBlur}
+                touched={authTouched.password}
+                error={authValidation.errors.password}
+                autoComplete={
+                  authMode === "signup" ? "new-password" : "current-password"
+                }
+                required
+                showToggle
+                isVisible={showPassword}
+                onToggle={() => setShowPassword((prev) => !prev)}
+              />
+
+              <PasswordStrengthMeter
+                password={authForm.password}
+                visible={
+                  authMode === "signup" ||
+                  (authTouched.password && authForm.password.length > 0)
+                }
+              />
+
+              {authMode === "signup" ? (
+                <div className="auth-terms-wrap">
+                  <label className="auth-terms">
+                    <input
+                      type="checkbox"
+                      name="termsAccepted"
+                      checked={authForm.termsAccepted}
+                      onChange={onAuthFieldChange}
+                      onBlur={onAuthFieldBlur}
+                    />
+                    <span>
+                      I agree to the Terms of Service and Privacy Policy.
+                    </span>
+                  </label>
+                  <p
+                    className={`auth-inline-msg ${
+                      authTouched.termsAccepted &&
+                      authValidation.errors.termsAccepted
+                        ? "is-visible"
+                        : ""
+                    }`}
+                  >
+                    {authTouched.termsAccepted
+                      ? authValidation.errors.termsAccepted
+                      : ""}
+                  </p>
+                </div>
+              ) : null}
+
+              <button
+                type="submit"
+                disabled={!authCanSubmit}
+                className="landing-auth-submit"
+                aria-busy={authBusy}
+              >
+                {authBusy ? (
+                  <>
+                    <span className="btn-spinner" aria-hidden />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <span className="material-symbols-outlined">person</span>
+                    {authMode === "signup" ? "Create account" : "Sign in"}
+                  </>
+                )}
+              </button>
+            </form>
+
+            <div className="landing-auth-alt">
+              <span>
+                {authMode === "signup"
+                  ? "Already have an account?"
+                  : "New to DevSkill Audit?"}
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setAuthMode((prev) =>
+                    prev === "login" ? "signup" : "login",
+                  );
+                  setAuthFeedback({ type: "", message: "" });
+                }}
+              >
+                {authMode === "signup" ? "Login" : "Create account"}
+              </button>
+            </div>
+
+            <div
+              className="landing-auth-social"
+              aria-label="Social signup options"
+            >
+              <button type="button" className="social-btn" disabled>
+                <span className="material-symbols-outlined">deployed_code</span>
+                Continue with GitHub
+              </button>
+              <button type="button" className="social-btn" disabled>
+                <span className="material-symbols-outlined">mail</span>
+                Continue with Google
+              </button>
+            </div>
+
+            <p
+              className={`landing-auth-feedback ${
+                authFeedback.message ? "is-visible" : ""
+              } ${authFeedback.type || ""}`}
+              role={authFeedback.type === "error" ? "alert" : "status"}
+            >
+              {authFeedback.message}
+            </p>
+          </section>
 
           <article className="landing-preview-card">
             <div className="landing-preview-glow glow-top" aria-hidden />

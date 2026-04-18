@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "npx tsx watch server/index.ts",
-    "start": "npx tsx server/index.ts"
+    "start": "npx tsx server/index.ts",
+    "test": "npx tsx --test server/**/*.test.ts"
   }
 }

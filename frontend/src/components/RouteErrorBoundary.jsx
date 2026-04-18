@@ -1,40 +1,41 @@
-import { Component, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Component } from "react";
+import ErrorPage from "./ErrorPage";
 
-function RouteErrorFallback() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    // Recover from unexpected render failures by returning users home.
-    navigate("/landing", {
-      replace: true,
-      state: { fromError: location.pathname },
-    });
-  }, [navigate, location.pathname]);
-
-  return null;
+function RouteErrorFallback({ error, onRetry }) {
+  return (
+    <ErrorPage
+      errorCode="500"
+      message="The application encountered an unexpected rendering error."
+      showRetry
+      onRetry={onRetry}
+      errorDetails={error}
+    />
+  );
 }
 
 class RouteErrorBoundaryInner extends Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
   }
 
   componentDidCatch(error) {
     // Keep logging simple and local for development troubleshooting.
-    // eslint-disable-next-line no-console
     console.error("Route rendering error:", error);
   }
 
   render() {
     if (this.state.hasError) {
-      return <RouteErrorFallback />;
+      return (
+        <RouteErrorFallback
+          error={this.state.error}
+          onRetry={() => this.setState({ hasError: false, error: null })}
+        />
+      );
     }
 
     return this.props.children;

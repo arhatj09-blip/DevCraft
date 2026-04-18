@@ -12,6 +12,13 @@ async function sleep(ms) {
   await new Promise((r) => setTimeout(r, ms))
 }
 
+function isRateLimitedStatus(statusPayload) {
+  if (!statusPayload || typeof statusPayload !== 'object') return false
+  const code = String(statusPayload.errorCode ?? '')
+  const message = String(statusPayload.message ?? '').toLowerCase()
+  return code === 'RATE_LIMITED' || message.includes('rate limit')
+}
+
 async function main() {
   // Health
   const health = await (await fetch(`${base}/api/health`)).json()
@@ -65,6 +72,7 @@ async function main() {
 
   // Stage 2: poll status
   let finalStatus = ''
+  let finalPayload = null
   for (let i = 0; i < 40; i++) {
     const st = await (await fetch(`${base}/api/audit/${jobId}/status`)).json()
     const active = st?.steps?.find?.((x) => x.status === 'active')
@@ -77,9 +85,20 @@ async function main() {
       st.message ?? '',
     )
     finalStatus = st.status
+    finalPayload = st
     if (st.status === 'completed' || st.status === 'failed') break
     await sleep(500)
   }
+
+  if (finalStatus === 'failed' && isRateLimitedStatus(finalPayload)) {
+    const resultRateLimited = await fetch(`${base}/api/audit/${jobId}/result`)
+    const resultBody = await resultRateLimited.json().catch(() => null)
+    assert(resultRateLimited.status === 429, `expected 429 result for rate limit, got ${resultRateLimited.status}`)
+    assert(resultBody?.error?.code === 'RATE_LIMITED', 'expected RATE_LIMITED error code from result endpoint')
+    console.log('OK: Stage 1–3 smoke test validated graceful RATE_LIMITED behavior')
+    return
+  }
+
   assert(finalStatus === 'completed', `expected completed, got ${finalStatus}`)
 
   // Stage 2: analysis

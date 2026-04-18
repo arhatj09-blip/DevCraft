@@ -39,6 +39,13 @@ function hasKeys(obj, keys) {
   return !!obj && typeof obj === 'object' && keys.every((k) => Object.prototype.hasOwnProperty.call(obj, k))
 }
 
+function isRateLimitedStatus(statusPayload) {
+  if (!statusPayload || typeof statusPayload !== 'object') return false
+  const code = String(statusPayload.errorCode ?? '')
+  const message = String(statusPayload.message ?? '').toLowerCase()
+  return code === 'RATE_LIMITED' || message.includes('rate limit')
+}
+
 const REQUIRED_AI_KEYS = [
   'overallScore10',
   'strengths',
@@ -65,16 +72,38 @@ async function main() {
 
   const deadlineMs = Date.now() + 180_000
   let status = null
+  let finalStatusPayload = null
 
   while (Date.now() < deadlineMs) {
     const s = await getJson(`${BASE}/api/audit/${jobId}/status`)
     if (s.ok && s.json?.status) {
       status = s.json.status
+      finalStatusPayload = s.json
       if (status === 'completed') break
-      if (status === 'failed') throw new Error(`Job failed: ${s.json?.message ?? 'unknown'}`)
+      if (status === 'failed') break
     }
     // poll delay
     await new Promise((r) => setTimeout(r, 800))
+  }
+
+  if (status === 'failed' && isRateLimitedStatus(finalStatusPayload)) {
+    const rateLimited = await getJson(`${BASE}/api/audit/${jobId}/result`)
+    assert(rateLimited.status === 429, `Expected 429 result for rate limit, got ${rateLimited.status}`)
+    assert(rateLimited.json?.error?.code === 'RATE_LIMITED', 'Expected RATE_LIMITED error code from result endpoint')
+    console.log(
+      JSON.stringify(
+        {
+          ok: true,
+          degraded: true,
+          reason: 'GitHub API rate limit reached; backend returned mapped RATE_LIMITED response',
+          base: BASE,
+          githubUrl: GITHUB_URL,
+        },
+        null,
+        2,
+      ),
+    )
+    return
   }
 
   assert(status === 'completed', `Timed out waiting for completion (last status=${status})`)
