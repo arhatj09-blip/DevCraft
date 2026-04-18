@@ -318,8 +318,16 @@ ME
 <div class="max-w-6xl mx-auto space-y-8">
 <!-- Page Header -->
 <div>
+<div class="flex items-center justify-between">
+<div>
 <h2 class="font-headline text-4xl font-bold text-on-surface tracking-tight" style="">Audit Results</h2>
 <p class="font-body text-on-surface-variant text-base mt-2" style="">Comprehensive analysis completed just now.</p>
+</div>
+<button id="downloadPdfBtn" class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-medium text-sm hover:bg-primary-container/20 transition-colors" style="display: none;">
+<span class="material-symbols-outlined text-[20px]">download</span>
+Download Report
+</button>
+</div>
 </div>
 <!-- Bento Grid Top: Hero Summary -->
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -330,16 +338,16 @@ ME
 <div class="flex justify-between items-start z-10">
 <div>
 <h3 class="font-headline text-xl font-semibold text-on-surface mb-1" style="">Developer Profile</h3>
-<p class="font-body text-primary font-medium" style="">Intermediate Developer</p>
+<p class="font-body text-primary font-medium" id="profileLevel" style="">Intermediate Developer</p>
 </div>
 <div class="bg-surface-container-lowest px-4 py-2 rounded-full border border-outline-variant/15 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-<span class="font-headline font-extrabold text-2xl text-on-surface" style="">7.2</span>
+<span class="font-headline font-extrabold text-2xl text-on-surface" id="score10" style="">7.2</span>
 <span class="text-on-surface-variant text-sm font-medium" style="">/ 10</span>
 </div>
 </div>
 <div class="mt-8 z-10">
 <h4 class="font-headline text-lg font-semibold text-on-surface mb-2" style="">Executive Summary</h4>
-<p class="font-body text-on-surface-variant leading-relaxed" style="">
+<p class="font-body text-on-surface-variant leading-relaxed" id="execSummary" style="">
                                     Demonstrates <strong class="text-on-surface">strong frontend skills</strong> with a solid grasp of component architecture and state management. However, there are notable <strong class="text-on-surface">weak backend fundamentals</strong>, specifically regarding API design efficiency and database query optimization.
                                 </p>
 </div>
@@ -351,29 +359,59 @@ ME
 <div>
 <div class="flex justify-between text-sm mb-1">
 <span class="font-medium text-on-surface" style="">Code Maintainability</span>
-<span class="text-on-surface-variant" style="">85%</span>
+<span class="text-on-surface-variant" id="metricMaintainability" style="">85%</span>
 </div>
 <div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[85%] rounded-full"></div>
+<div class="bg-primary h-full w-[85%] rounded-full" id="metricMaintainabilityBar"></div>
 </div>
 </div>
 <div>
 <div class="flex justify-between text-sm mb-1">
 <span class="font-medium text-on-surface" style="">Security Practices</span>
-<span class="text-on-surface-variant" style="">60%</span>
+<span class="text-on-surface-variant" id="metricSecurity" style="">60%</span>
 </div>
 <div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
-<div class="bg-tertiary h-full w-[60%] rounded-full"></div>
+<div class="bg-tertiary h-full w-[60%] rounded-full" id="metricSecurityBar"></div>
 </div>
 </div>
 <div>
 <div class="flex justify-between text-sm mb-1">
 <span class="font-medium text-on-surface" style="">Test Coverage</span>
-<span class="text-on-surface-variant" style="">42%</span>
+<span class="text-on-surface-variant" id="metricTests" style="">42%</span>
 </div>
 <div class="w-full bg-surface-variant h-1.5 rounded-full overflow-hidden">
-<div class="bg-secondary h-full w-[42%] rounded-full"></div>
+<div class="bg-secondary h-full w-[42%] rounded-full" id="metricTestsBar"></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="bg-surface-container-low rounded-xl p-6" id="scoreBreakdownCard">
+<h3 class="font-headline text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-4">
+    Score Breakdown
+  </h3>
+
+<div class="flex flex-col gap-3 text-sm" id="scoreBreakdownRows">
+<div class="text-on-surface-variant">Loading…</div>
+</div>
+</div>
+
+<div class="bg-surface-container-low rounded-xl p-6" id="fixPriorityPieCard">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline text-sm font-bold text-on-surface-variant uppercase tracking-wider">
+    Fix Priority (Distribution)
+  </h3>
+<span class="text-xs text-on-surface-variant" id="hotspotPieTotal">-</span>
+</div>
+
+<div class="flex items-center gap-4">
+<div id="hotspotPieHost" class="shrink-0">
+<div class="text-on-surface-variant text-sm">Loading…</div>
+</div>
+<div class="flex flex-col gap-2 text-sm" id="hotspotPieLegend">
+<div class="text-on-surface-variant">Loading…</div>
 </div>
 </div>
 </div>
@@ -386,19 +424,21 @@ ME
 <span class="material-symbols-outlined text-primary text-[20px]" style="">verified</span>
 <h3 class="font-headline font-bold text-lg text-on-surface" style="">Verified Strengths</h3>
 </div>
-<div class="flex flex-wrap gap-2">
-<span class="bg-primary-fixed-dim text-on-primary-fixed px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
-<span class="material-symbols-outlined text-[16px]" style="">check_circle</span>
-                                    React Component Lifecycles
-                                </span>
-<span class="bg-primary-fixed-dim text-on-primary-fixed px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
-<span class="material-symbols-outlined text-[16px]" style="">check_circle</span>
-                                    CSS/Tailwind Proficiency
-                                </span>
-<span class="bg-primary-fixed-dim text-on-primary-fixed px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
-<span class="material-symbols-outlined text-[16px]" style="">check_circle</span>
-                                    Client-Side Routing
-                                </span>
+<div class="flex flex-wrap gap-2" id="strengthChips">
+<span class="text-primary text-sm font-medium inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+    No duplication detected
+  </span>
+
+<span class="text-primary text-sm font-medium inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+    Consistent naming conventions
+  </span>
+
+<span class="text-primary text-sm font-medium inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+    CI/CD pipeline configured
+  </span>
 </div>
 </div>
 <!-- Weaknesses -->
@@ -407,26 +447,27 @@ ME
 <span class="material-symbols-outlined text-tertiary text-[20px]" style="">warning</span>
 <h3 class="font-headline font-bold text-lg text-on-surface" style="">Growth Areas</h3>
 </div>
-<div class="flex flex-wrap gap-2">
-<span class="bg-tertiary-container text-on-tertiary px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<div class="flex flex-wrap gap-2" id="weaknessChips">
+<span class="text-tertiary text-sm font-medium inline-flex items-center gap-1" style="">
 <span class="material-symbols-outlined text-[16px]" style="">error</span>
                                     N+1 Query Issues
                                 </span>
-<span class="bg-tertiary-container text-on-tertiary px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<span class="text-tertiary text-sm font-medium inline-flex items-center gap-1" style="">
 <span class="material-symbols-outlined text-[16px]" style="">error</span>
                                     RESTful Contract Design
                                 </span>
-<span class="bg-tertiary-container text-on-tertiary px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1" style="">
+<span class="text-tertiary text-sm font-medium inline-flex items-center gap-1" style="">
 <span class="material-symbols-outlined text-[16px]" style="">error</span>
                                     Error Handling (Node.js)
                                 </span>
 </div>
 </div>
 </div>
+
 <!-- Code-Level Insights (Architectural rules applied) -->
 <div>
 <h3 class="font-headline font-bold text-xl text-on-surface mb-4" style="">Code-Level Insights</h3>
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-4" id="codeInsights">
 <div class="bg-surface-container rounded-xl overflow-hidden flex flex-col md:flex-row border border-outline-variant/15">
 <div class="p-5 md:w-1/3 flex flex-col justify-center bg-surface-container-low border-b md:border-b-0 md:border-r border-outline-variant/15">
 <div class="flex items-center gap-2 mb-2 text-tertiary">
@@ -471,12 +512,74 @@ ME
 </div>
 </div>
 </div>
+
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-4">
+    Hotspot Files
+  </h3>
+
+<div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/15">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-sm font-medium text-on-surface">Files</span>
+      <span class="text-xs text-on-surface-variant" id="hotspotSelectedFile">Select a file</span>
+    </div>
+    <div class="flex flex-col gap-3" id="hotspotFilesList">
+      <div class="text-on-surface-variant">Loading…</div>
+    </div>
+    <div class="mt-4" id="hotspotIssuesHost">
+      <div class="text-on-surface-variant text-sm">Click a hotspot file to view issues.</div>
+    </div>
+</div>
+</div>
+
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/15">
+<h3 class="font-headline font-bold text-xl text-on-surface mb-4">
+    Security Alerts
+  </h3>
+
+<div id="securityAlertsHost">
+<div class="text-on-surface-variant text-sm">Loading…</div>
+</div>
+</div>
+
+<div class="bg-surface-container-low p-6 rounded-xl">
+<h3 class="font-headline font-bold text-lg text-on-surface mb-4">
+    Project Complexity
+  </h3>
+
+<ul class="text-sm text-on-surface-variant space-y-2" id="projectComplexityList">
+<li>Loading…</li>
+</ul>
+</div>
+
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15">
+<h3 class="font-headline font-bold text-lg text-on-surface mb-4">
+    Analysis Coverage
+  </h3>
+
+<div class="flex flex-col gap-2 text-sm">
+<div class="flex justify-between">
+<span class="text-on-surface">Files analyzed</span>
+<span class="text-on-surface-variant"><span id="coverageFilesSampled">-</span> / <span id="coverageFilesTotal">-</span></span>
+</div>
+
+<div class="flex justify-between">
+<span class="text-on-surface">Lines scanned</span>
+<span class="text-on-surface-variant" id="coverageLinesScanned">-</span>
+</div>
+
+<div class="flex justify-between">
+<span class="text-on-surface">Confidence</span>
+<span class="text-primary font-medium" id="coverageConfidence">-</span>
+</div>
+</div>
+</div>
 <!-- Project Breakdown & Live App Analysis Grid -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-12">
 <!-- Project Breakdown -->
 <div>
 <h3 class="font-headline font-bold text-xl text-on-surface mb-4" style="">Project Breakdown</h3>
-<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-3" id="projectBreakdown">
 <!-- Repo Card -->
 <div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between border border-outline-variant/15">
 <div class="flex items-center gap-3">
@@ -502,7 +605,7 @@ ME
 </div>
 </div>
 <!-- Live App Analysis -->
-<div class="bg-surface-container p-6 rounded-xl flex flex-col">
+<div class="bg-surface-container p-6 rounded-xl flex flex-col" id="liveAppCard">
 <h3 class="font-headline font-bold text-xl text-on-surface mb-4" style="">Live App Analysis</h3>
 <div class="flex-1 flex flex-col justify-center gap-6">
 <div>
@@ -511,10 +614,10 @@ ME
 <span class="material-symbols-outlined text-[18px] text-on-surface-variant" style="">speed</span>
 <span class="font-medium text-sm text-on-surface" style="">Lighthouse Performance</span>
 </div>
-<span class="font-headline font-bold text-lg text-primary" style="">92</span>
+<span class="font-headline font-bold text-lg text-primary" id="livePerfScore" style="">92</span>
 </div>
 <div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[92%] rounded-full"></div>
+<div class="bg-primary h-full w-[92%] rounded-full" id="livePerfBar"></div>
 </div>
 </div>
 <div>
@@ -523,12 +626,12 @@ ME
 <span class="material-symbols-outlined text-[18px] text-on-surface-variant" style="">accessibility_new</span>
 <span class="font-medium text-sm text-on-surface" style="">Accessibility (a11y)</span>
 </div>
-<span class="font-headline font-bold text-lg text-tertiary" style="">74</span>
+<span class="font-headline font-bold text-lg text-tertiary" id="liveA11yScore" style="">74</span>
 </div>
 <div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
-<div class="bg-tertiary h-full w-[74%] rounded-full"></div>
+<div class="bg-tertiary h-full w-[74%] rounded-full" id="liveA11yBar"></div>
 </div>
-<p class="text-xs text-on-surface-variant mt-2" style="">Missing ARIA labels on custom modal components.</p>
+<p class="text-xs text-on-surface-variant mt-2" id="liveA11yNote" style="">Missing ARIA labels on custom modal components.</p>
 </div>
 </div>
 </div>
@@ -576,4 +679,5 @@ ME
     }
   });
 </script>
+<script type="module" src="/src/pages/results_dashboard.ts"></script>
 </body></html>

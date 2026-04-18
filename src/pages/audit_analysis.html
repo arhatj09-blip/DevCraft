@@ -97,10 +97,10 @@
 <div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center mb-6 animate-pulse">
 <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">analytics</span>
 </div>
-<h1 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-3">Analyzing real-world code signals…</h1>
-<p class="font-body text-base text-on-surface-variant max-w-md">DevSkill Audit is processing architectural patterns and code quality metrics.</p>
+<h1 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-3" id="auditHeadline">Analyzing real-world code signals…</h1>
+<p class="font-body text-base text-on-surface-variant max-w-md" id="auditSubtext">DevSkill Audit is processing architectural patterns and code quality metrics.</p>
 </div>
-<div class="space-y-6">
+<div class="space-y-6" id="auditSteps">
 <div class="flex items-center gap-4">
 <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm shadow-primary/20">
 <span class="material-symbols-outlined text-on-primary text-sm font-bold">check</span>
@@ -149,4 +149,5 @@
 </div>
 </div>
 </main>
+<script type="module" src="/src/pages/audit_analysis.ts"></script>
 </body></html>

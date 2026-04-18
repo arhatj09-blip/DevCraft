@@ -1,0 +1,407 @@
+{
+  "github": {
+    "inputUrl": "https://github.com/supabase/supabase",
+    "kind": "repo",
+    "target": "supabase/supabase",
+    "totalRepos": 1,
+    "detailedRepos": 1,
+    "truncated": false,
+    "languagesObserved": [
+      "TypeScript",
+      "MDX",
+      "JavaScript",
+      "CSS"
+    ],
+    "repoIndex": [
+      {
+        "fullName": "supabase/supabase",
+        "htmlUrl": "https://github.com/supabase/supabase",
+        "pushedAt": "2026-04-18T14:58:16Z",
+        "updatedAt": "2026-04-18T14:39:48Z"
+      }
+    ],
+    "repos": [
+      {
+        "fullName": "supabase/supabase",
+        "htmlUrl": "https://github.com/supabase/supabase",
+        "defaultBranch": "master",
+        "pushedAt": "2026-04-18T14:58:16Z",
+        "updatedAt": "2026-04-18T14:39:48Z",
+        "stars": 101058,
+        "forks": 12110,
+        "primaryLanguages": [
+          "TypeScript",
+          "MDX",
+          "JavaScript",
+          "CSS"
+        ],
+        "fileCount": 15210,
+        "topLevelFolders": [
+          ".agents",
+          ".claude",
+          ".cursor",
+          ".cursorignore",
+          ".dockerignore",
+          ".github",
+          ".gitignore",
+          ".mcp.json",
+          ".misspell-fixer.ignore",
+          ".npmrc",
+          ".nvmrc",
+          ".prettierignore",
+          "CONTRIBUTING.md",
+          "DEVELOPERS.md",
+          "LICENSE",
+          "Makefile",
+          "README.md",
+          "SECURITY.md",
+          "apps",
+          "blocks",
+          "docker",
+          "e2e",
+          "examples",
+          "i18n",
+          "knip.jsonc"
+        ],
+        "hasTests": true,
+        "hasCI": true,
+        "hasReadme": true,
+        "readmeLength": 16420,
+        "largestFiles": [
+          {
+            "path": "apps/docs/public/img/troubleshooting/upload-edge-function-via-dashboard.gif",
+            "size": 17633380
+          },
+          {
+            "path": "apps/www/public/images/blog/launch-week-13/day-5-database-build-v2/deploy-to-supabase.mp4",
+            "size": 13045299
+          },
+          {
+            "path": "examples/edge-functions/supabase/functions/telegram-bot/demo.gif",
+            "size": 10392717
+          },
+          {
+            "path": "apps/docs/spec/enrichments/tsdoc_v2/combined.json",
+            "size": 10228663
+          },
+          {
+            "path": "apps/www/public/images/blog/launch-week-13/day-5-database-build-v2/byo-llm.mp4",
+            "size": 7863602
+          }
+        ],
+        "commitSample": {
+          "sampleSize": 60,
+          "latestCommitAt": "2026-04-18T09:56:08Z",
+          "oldestCommitAt": "2026-04-15T13:20:59Z",
+          "commits": [
+            {
+              "sha": "a5f4a59e0e262394b345600e8d8a2241d6ac3b64",
+              "title": "fix(studio): detect update-without-where on quoted table names (#45009)",
+              "date": "2026-04-18T09:56:08Z"
+            },
+            {
+              "sha": "3aed9a9a2a819f3649d79e684775dd501d59e6f4",
+              "title": "feat(studio): warn before CREATE TABLE without RLS in SQL editor (#45008)",
+              "date": "2026-04-18T09:18:12Z"
+            },
+            {
+              "sha": "0849fad451605c859fd19394e01b24113b386f84",
+              "title": "sort desc date, hide past events (#44996)",
+              "date": "2026-04-17T22:45:46Z"
+            },
+            {
+              "sha": "7f8cc65fa99b802cd859197c19dfb7cc456298f0",
+              "title": "Added a new AWS Activate offer page (#44957)",
+              "date": "2026-04-17T19:36:15Z"
+            },
+            {
+              "sha": "cacee2585ba44c3392e7ee9cf9249e941ff30f8d",
+              "title": "fix(studio): await saveRow and surface foreign row errors to UI and Sentry (#44…",
+              "date": "2026-04-17T18:08:25Z"
+            },
+            {
+              "sha": "a7341c70eac60acfd67ffe4855ad33a1acadb3be",
+              "title": "feat(shortcuts): add showInSettings flag to ShortcutDefinition (#44997)",
+              "date": "2026-04-17T16:31:39Z"
+            },
+            {
+              "sha": "e8df67d5d5291e05ea56596aee0f2b7fa152929b",
+              "title": "chore: migrate shortcuts to new hooks API (#44955)",
+              "date": "2026-04-17T16:02:56Z"
+            },
+            {
+              "sha": "c04f2465e4c138d96ef3de62e2eda229ee6f487e",
+              "title": "fix for connect modal being stuck loading for non JS frameworks (#44992)",
+              "date": "2026-04-17T15:51:39Z"
+            },
+            {
+              "sha": "945b9266bf3baf81a57984c559925d5455bbec07",
+              "title": "docs: initial version of doc to guide options for data deletion (#42978)",
+              "date": "2026-04-17T15:49:44Z"
+            },
+            {
+              "sha": "cb6bf30475312876f6fc6163ee37721d160581b0",
+              "title": "chore: sales team update  (#44981)",
+              "date": "2026-04-17T15:38:10Z"
+            },
+            {
+              "sha": "b4da9f213c3f6f36c631a19df30458cee94d8ea9",
+              "title": "[bot] Sync from supabase/troubleshooting (#44967)",
+              "date": "2026-04-17T15:33:41Z"
+            },
+            {
+              "sha": "e63cca3b4af8c3a85b730fcbe86ba28aaaca65d8",
+              "title": "fix(studio): preserve EXTERNAL_PHONE_ENABLED on phone provider save (#44982)",
+              "date": "2026-04-17T15:15:25Z"
+            },
+            {
+              "sha": "3ed436de747acc512319ca67cc90ef4f09b886db",
+              "title": "feat: new shortcuts hook with registrations (#44954)",
+              "date": "2026-04-17T14:20:36Z"
+            },
+            {
+              "sha": "8ef6181ef721564df88aadc5b6105ad28e790a9d",
+              "title": "fix(studio): show Vercel-specific copy in delete connection dialog (#44960)",
+              "date": "2026-04-17T13:28:49Z"
+            },
+            {
+              "sha": "bd04a59decc06594b14b429e4e13b3bde84ed381",
+              "title": "fix: phone provider  (#44974)",
+              "date": "2026-04-17T13:22:24Z"
+            },
+            {
+              "sha": "9c155a21921be84eaa6aa32cbf4759cbe0150189",
+              "title": "feat: show installed marketplace apps and remove official badge from them (#449…",
+              "date": "2026-04-17T12:30:57Z"
+            },
+            {
+              "sha": "bc863816fb99b5ff19737b7bb063fd61247208bc",
+              "title": "docs: Update JS and Kotlin SDK reference (stripNulls, OAuth 2.1 admin) (#44959)",
+              "date": "2026-04-17T11:45:22Z"
+            },
+            {
+              "sha": "4d18c9615c752e1b542fd9122f653c2dd82f3425",
+              "title": "chore(docs): add Dane Harrigan to humans.txt (#44956)",
+              "date": "2026-04-17T09:12:22Z"
+            },
+            {
+              "sha": "85500d5af04728df3260fa4742dc293910c3d7ca",
+              "title": "Docs: Manage image transformations (#44928)",
+              "date": "2026-04-16T18:03:47Z"
+            },
+            {
+              "sha": "8092c6f85ffde2cbe7a65eef02d44f06016b9a37",
+              "title": "Add Sugat Mahanti to humans.txt (#44952)",
+              "date": "2026-04-16T16:50:24Z"
+            },
+            {
+              "sha": "612d0f366367907e89829fc2e28dee1edc9f285f",
+              "title": "modify events page to display publish to web events (#43934)",
+              "date": "2026-04-16T15:52:20Z"
+            },
+            {
+              "sha": "ea15a7b8b99c37898ca25fc801ca361c967e2061",
+              "title": "docs: update js sdk docs (v2.103.3) (#44944)",
+              "date": "2026-04-16T15:24:51Z"
+            },
+            {
+              "sha": "5b349a49c301450a617888912109597ce5bba051",
+              "title": "docs: how to download complete storage (#44877)",
+              "date": "2026-04-16T15:23:40Z"
+            },
+            {
+              "sha": "b1531545fbb4247d37e538e8bc1dbf6bf3df3871",
+              "title": "security: migrate more files to safeSql (#44727)",
+              "date": "2026-04-16T15:02:02Z"
+            },
+            {
+              "sha": "f415fb9f5ebf6c167c0e5880f4286696dd75eef1",
+              "title": "docs: Key changes in high impact partials (#44481)",
+              "date": "2026-04-16T14:12:05Z"
+            },
+            {
+              "sha": "28ef62cf312a2f27ba14b45c17e27d407125ce73",
+              "title": "fix(docs): scope vitest run to target dir in js-libs-update workflow (#44943)",
+              "date": "2026-04-16T14:07:16Z"
+            },
+            {
+              "sha": "676d4b927de9b548c227d5836a1ff6036156f258",
+              "title": "chore: update cli reference doc (#44815)",
+              "date": "2026-04-16T14:04:03Z"
+            },
+            {
+              "sha": "ae4f1551f01f6ecc2d893d3d9d5eb447150bba46",
+              "title": "chore: make new table filter bar the default (#44910)",
+              "date": "2026-04-16T13:59:48Z"
+            },
+            {
+              "sha": "0c931f8c58d1a1ba9988bd45219d78eaafce336f",
+              "title": "fix(studio): use nuqs for database functions search to prevent caret jumping (#…",
+              "date": "2026-04-16T13:57:36Z"
+            },
+            {
+              "sha": "c3119ea1eabf51d314a14ae16d47040ba84fe8ef",
+              "title": "chore: types cleanup for react 19 (#44941)",
+              "date": "2026-04-16T13:31:04Z"
+            },
+            {
+              "sha": "16fd60134d50b3500390332224c94f7d04d9e4b9",
+              "title": "chore: migrate auth providers form to zod (#44865)",
+              "date": "2026-04-16T13:27:29Z"
+            },
+            {
+              "sha": "732ab290dcc43db83b180db3ec2c63c6440e6aaf",
+              "title": "fix(studio): remove CLI backup instructions from paused project state (#44939)",
+              "date": "2026-04-16T13:21:40Z"
+            },
+            {
+              "sha": "f575b392192b9ec1d6c5d68506196d1b68a1a24e",
+              "title": "feat: update @supabase/*-js libraries to v2.103.2 (#44903)",
+              "date": "2026-04-16T13:14:48Z"
+            },
+            {
+              "sha": "02325f00e747ab5496b9a3a0137504d2ae103214",
+              "title": "feat(studio): add Copy as CSV option to SQL editor results (#44911)",
+              "date": "2026-04-16T13:13:09Z"
+            },
+            {
+              "sha": "8ff22d7f0fe03b68c32162abd79ab8ef8a7263c0",
+              "title": "fix: table editor columns cannot be selected nor advisor icon clicked (#44931)",
+              "date": "2026-04-16T13:12:39Z"
+            },
+            {
+              "sha": "fdf8732727725732f18852a38df19ae7d306811f",
+              "title": "fix: Include security_invoker in definition (#44936)",
+              "date": "2026-04-16T13:03:54Z"
+            },
+            {
+              "sha": "e7860e9163ea20b73de2341257ef5a19ec487fd2",
+              "title": "feat: request confirmation before applying auto-layout to the schema visualiser…",
+              "date": "2026-04-16T10:17:05Z"
+            },
+            {
+              "sha": "0cb71a24976e8add3110f509332a5561bbb59e28",
+              "title": "feat: new marketplace db (#44574)",
+              "date": "2026-04-16T09:57:12Z"
+            },
+            {
+              "sha": "1cb548b2dc9ab77b3d41fbf7eab7fa7f03712756",
+              "title": "Docs: add astro guide auth quickstart (#44495)",
+              "date": "2026-04-16T08:19:36Z"
+            },
+            {
+              "sha": "b175a5e44f3faf19d86471c77950825e04c32a55",
+              "title": "docs: update js sdk docs (2.103.2) (#44904)",
+              "date": "2026-04-16T08:16:39Z"
+            },
+            {
+              "sha": "1ca21fc568e372ad5f1db99dbe64e68bedc732bd",
+              "title": "Docs: add astro quickstart (#44488)",
+              "date": "2026-04-16T08:13:14Z"
+            },
+            {
+              "sha": "bc13eb56acbda546db9a27fc57233e0ac276c6d0",
+              "title": "docs: add pgvector index tuning guide (ivfflat & hnsw) (#44671)",
+              "date": "2026-04-16T08:06:07Z"
+            },
+            {
+              "sha": "194141bb39c7d086a1fa0f244b03c70af781a22c",
+              "title": "Update humans.txt at PeopleOps request (#44929)",
+              "date": "2026-04-16T07:51:26Z"
+            },
+            {
+              "sha": "0395fd969f5a188f3f4c63f09ff2b5621b87402a",
+              "title": "chore: upgrade `react-markdown` (#44913)",
+              "date": "2026-04-16T07:12:43Z"
+            },
+            {
+              "sha": "71acf223184122016b66aab8e0b70b9970d15506",
+              "title": "Skip invalidating auth config when toggling security email notification in temp…",
+              "date": "2026-04-15T23:27:57Z"
+            },
+            {
+              "sha": "571533482fa7b87b3e853bf55b28ea86500357e6",
+              "title": "refactor(growth): remove useTelemetryCookie and sb-telemetry-data cookie (#4384…",
+              "date": "2026-04-15T22:51:01Z"
+            },
+            {
+              "sha": "d70ed2ef76a4507093171c5859c1d349c9a739f3",
+              "title": "chore: Add new OAuth scopes for analytics config to studio (#44826)",
+              "date": "2026-04-15T19:59:43Z"
+            },
+            {
+              "sha": "82f55217a2fb4fb283a3991fcb8b4270da824df8",
+              "title": "feat(www): AI content via Content-Signal in robots.txt (#44875)",
+              "date": "2026-04-15T18:05:35Z"
+            },
+            {
+              "sha": "03d44c390d592e78ed425bbe692d05c6cccf670f",
+              "title": "feat: add api-catalog to .well-known (#44880)",
+              "date": "2026-04-15T17:49:05Z"
+            },
+            {
+              "sha": "35478cf47b004c7751c1f4e042d9b37cc559b7f5",
+              "title": "feat: expose tax in upcoming invoice (#44732)",
+              "date": "2026-04-15T15:34:28Z"
+            },
+            {
+              "sha": "bacd524b22c234b36e87416846babb941864ccae",
+              "title": "chore: update `react-hook-form` (#44893)",
+              "date": "2026-04-15T15:27:06Z"
+            },
+            {
+              "sha": "1b1d05ff96322a7d346dc3e80cfcf575e9f6f92c",
+              "title": "chore: upgrade vite to v8 and vitest to v4 (#44833)",
+              "date": "2026-04-15T15:13:48Z"
+            },
+            {
+              "sha": "74e8bb656f4a945c02eac2787165f5755332d4df",
+              "title": "chore: upgrade `framer-motion` (#44906)",
+              "date": "2026-04-15T15:07:56Z"
+            },
+            {
+              "sha": "21584fe5124487d0be3fff952c253a93503fbc68",
+              "title": "feat(studio): add backup cli instructions (#44621)",
+              "date": "2026-04-15T14:39:32Z"
+            },
+            {
+              "sha": "10f49d85f1a0262ffcdbee71f532f45091be25df",
+              "title": "chore(sentry): decrease tracesSampleRate to prevent blowing through quota (#449…",
+              "date": "2026-04-15T14:34:51Z"
+            },
+            {
+              "sha": "c39e284641dc61de253c927bb223af471195c98c",
+              "title": "Observability: remove healthy/unhealthy badge from Service Health (#44771)",
+              "date": "2026-04-15T14:33:29Z"
+            },
+            {
+              "sha": "32cd9eb5c96fa5737c2b37952481960074beceb4",
+              "title": "chore: extend format/lint hook to all apps and packages (#44898)",
+              "date": "2026-04-15T14:08:26Z"
+            },
+            {
+              "sha": "cb34acd45c6931c03dcfd51869f65a7b2856cd14",
+              "title": "[GROWTH-773] chore(www): serve llms.txt content via API routes (#44897)",
+              "date": "2026-04-15T13:45:01Z"
+            },
+            {
+              "sha": "b44c32d05dc18466d31332744f04f993dce60517",
+              "title": "feat(docs): update admin operation examples to use secret key instead of servic…",
+              "date": "2026-04-15T13:42:15Z"
+            },
+            {
+              "sha": "46d4a51091fde7c9fe6b92fa83ef06575321a7de",
+              "title": "Update humans.txt (#44892)",
+              "date": "2026-04-15T13:20:59Z"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Commit history is sampled (last ~60 commits) per analyzed repo.",
+    "Accessibility, UI/UX, and interaction smoothness require browser-based auditing; server returns best-effort signals only."
+  ],
+  "generatedAt": 1776524364779
+}

@@ -8,6 +8,7 @@ import {
   getAuditResult,
   startAuditRun,
 } from './store.js'
+import { generatePDF } from './pdf-generator.js'
 
 function isHttpUrl(value: string): boolean {
   try {
@@ -248,4 +249,47 @@ auditRouter.get('/:jobId/analysis', (req, res) => {
   }
 
   return res.json(analysis)
+})
+
+auditRouter.get('/:jobId/report/pdf', async (req, res) => {
+  const jobId = req.params.jobId
+  const job = getAuditJob(jobId)
+  if (!job) {
+    return res.status(404).json({
+      error: { code: 'NOT_FOUND', message: 'Unknown jobId' },
+    })
+  }
+
+  const result = getAuditResult(jobId)
+  if (!result) {
+    if (job.status === 'failed') {
+      return res.status(500).json({
+        error: {
+          code: 'AUDIT_FAILED',
+          message: job.message ?? 'Audit failed',
+        },
+      })
+    }
+
+    return res.status(202).json({
+      jobId,
+      status: job.status,
+      message: job.message,
+    })
+  }
+
+  try {
+    const pdfBuffer = await generatePDF(result)
+    res.setHeader('Content-Type', 'application/pdf')
+    res.setHeader('Content-Disposition', `attachment; filename="DevSkill-Audit-Report-${jobId}.pdf"`)
+    res.send(pdfBuffer)
+  } catch (error) {
+    console.error('PDF generation error:', error)
+    res.status(500).json({
+      error: {
+        code: 'PDF_GENERATION_FAILED',
+        message: 'Failed to generate PDF report',
+      },
+    })
+  }
 })

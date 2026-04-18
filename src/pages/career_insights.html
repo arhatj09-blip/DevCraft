@@ -343,7 +343,7 @@ ME
 <h3 class="font-headline text-2xl font-bold text-on-surface" style="">Target Roles</h3>
 </div>
 <p class="text-on-surface-variant text-sm mb-8" style="">Your technical profile exhibits strong alignment with these roles. Core competencies are verified for production environments.</p>
-<div class="flex flex-col gap-4 mt-auto">
+<div class="flex flex-col gap-4 mt-auto" id="careerTargetRoles">
 <div class="bg-surface-container-lowest p-5 rounded-lg flex items-center justify-between group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-shadow">
 <div>
 <h4 class="font-headline font-semibold text-on-surface text-lg" style="">Junior Frontend Engineer</h4>
@@ -369,7 +369,7 @@ ME
 <h3 class="font-headline text-2xl font-bold text-on-surface" style="">Development Vectors</h3>
 </div>
 <p class="text-on-surface-variant text-sm mb-8" style="">Significant knowledge gaps exist for these roles. Avoid targeting these positions until foundational deficits are addressed.</p>
-<div class="flex flex-col gap-4 mt-auto">
+<div class="flex flex-col gap-4 mt-auto" id="careerDevVectors">
 <div class="bg-surface-container-low p-5 rounded-lg flex items-center justify-between">
 <div>
 <h4 class="font-headline font-semibold text-on-surface text-lg opacity-80" style="">Backend Engineer</h4>
@@ -387,13 +387,67 @@ ME
 </div>
 </div>
 </div>
+<!-- Reality Check / Honest Feedback -->
+<div class="bg-tertiary-container/10 rounded-xl p-8 border-l-4 border-tertiary mb-10">
+  <div class="flex items-center gap-3 mb-6">
+    <span class="material-symbols-outlined text-tertiary text-[28px]">bolt</span>
+    <h3 class="font-headline text-xl font-bold text-on-surface">Reality Check</h3>
+  </div>
+  <div id="careerHonestFeedback">
+    <p class="text-on-surface-variant text-sm italic">Loading feedback…</p>
+  </div>
+</div>
+
+<!-- Market Position / Level & Positioning -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+  <div class="bg-primary/5 rounded-xl p-8 border-l-4 border-primary">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="material-symbols-outlined text-primary text-[24px]">trending_up</span>
+      <h3 class="font-headline text-lg font-bold text-on-surface">Market Position</h3>
+    </div>
+    <div id="careerLevelEstimate" class="space-y-3">
+      <div class="text-on-surface-variant text-sm">Loading position data…</div>
+    </div>
+  </div>
+
+  <!-- Core Strengths -->
+  <div class="bg-primary-fixed-dim/10 rounded-xl p-8 border-l-4 border-primary-fixed-dim">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="material-symbols-outlined text-primary text-[24px]">check_circle</span>
+      <h3 class="font-headline text-lg font-bold text-on-surface">Core Strengths</h3>
+    </div>
+    <div id="careerCoreStrengths" class="space-y-2 text-sm">
+      <div class="text-on-surface-variant">Loading strengths…</div>
+    </div>
+  </div>
+
+  <!-- Weak Areas -->
+  <div class="bg-tertiary-container/10 rounded-xl p-8 border-l-4 border-tertiary">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="material-symbols-outlined text-tertiary text-[24px]">warning</span>
+      <h3 class="font-headline text-lg font-bold text-on-surface">Weak Areas</h3>
+    </div>
+    <div id="careerWeakAreas" class="space-y-2 text-sm">
+      <div class="text-on-surface-variant">Loading weak areas…</div>
+    </div>
+  </div>
+</div>
+
+<!-- Critical Skill Gaps -->
+<div class="mb-10">
+  <h3 class="font-headline text-2xl font-bold text-on-surface mb-6">Critical Skill Gaps</h3>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="careerSkillGaps">
+    <div class="text-on-surface-variant text-sm">Loading skill gaps…</div>
+  </div>
+</div>
+
 <!-- Audit Reasoning Section -->
 <div class="bg-surface-container-lowest rounded-xl p-8 ring-1 ring-outline-variant/15">
 <div class="flex items-center gap-3 mb-8 border-b-0">
 <span class="material-symbols-outlined text-primary text-[28px]" data-icon="troubleshoot" style="">troubleshoot</span>
 <h3 class="font-headline text-xl font-bold text-on-surface" style="">Architectural Audit Reasoning</h3>
 </div>
-<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-6" id="careerReasoning">
 <!-- Point 1 -->
 <div class="flex gap-5 items-start">
 <div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 mt-0.5">
@@ -467,4 +521,5 @@ ME
     }
   });
 </script>
+<script type="module" src="/src/pages/career_insights.ts"></script>
 </body></html>

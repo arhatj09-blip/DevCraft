@@ -154,10 +154,11 @@
 </div>
 </div>
 <div class="pt-4">
-<button class="w-full bg-gradient-primary hover:opacity-90 text-on-primary font-label font-semibold py-4 rounded-DEFAULT shadow-sm transition-all flex items-center justify-center gap-2 group" style="" type="button">
+<button class="w-full bg-gradient-primary hover:opacity-90 text-on-primary font-label font-semibold py-4 rounded-DEFAULT shadow-sm transition-all flex items-center justify-center gap-2 group" id="runAuditBtn" style="" type="button">
 <span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="">model_training</span>
                         Run Audit
                     </button>
+<p class="text-center text-xs font-body text-error mt-3 hidden" id="formError"></p>
 <p class="text-center text-xs font-body text-on-surface-variant mt-4" style="">Audits typically take 45-60 seconds to process.</p>
 </div>
 </form>
@@ -221,4 +222,5 @@
 <footer class="mt-auto py-8 text-center text-sm font-body text-on-surface-variant bg-surface-container-lowest border-t border-surface-container">
 <p class="" style="">© 2024 DevSkill Audit. Precision tooling for developers.</p>
 </footer>
+<script type="module" src="/src/pages/landing_page.ts"></script>
 </body></html>
