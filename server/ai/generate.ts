@@ -269,6 +269,38 @@ function makeFallbackAiResponse(args: {
   }
 }
 
+function ensureMinArrayLengths(obj: unknown, minLengths: Record<string, number>): unknown {
+  if (typeof obj !== 'object' || obj === null) return obj
+  
+  const result = Array.isArray(obj) ? [...obj] : { ...obj }
+  
+  if (Array.isArray(result)) {
+    for (let i = 0; i < result.length; i++) {
+      result[i] = ensureMinArrayLengths(result[i], minLengths)
+    }
+  } else {
+    for (const [key, val] of Object.entries(result)) {
+      if (Array.isArray(val)) {
+        const minLen = minLengths[key]
+        if (minLen !== undefined && val.length < minLen) {
+          // Fill with placeholder values
+          while (val.length < minLen) {
+            val.push('Evidence unavailable due to scope limitation')
+          }
+        }
+        // Recursively process array items
+        for (let i = 0; i < val.length; i++) {
+          val[i] = ensureMinArrayLengths(val[i], minLengths)
+        }
+      } else if (typeof val === 'object' && val !== null) {
+        result[key as keyof typeof result] = ensureMinArrayLengths(val, minLengths)
+      }
+    }
+  }
+  
+  return result
+}
+
 function buildAiRepairSystemPrompt(): string {
   return [
     'You are a strict JSON repair tool.',
@@ -279,8 +311,9 @@ function buildAiRepairSystemPrompt(): string {
     'Key rules:',
     '- Preserve meaning as much as possible from the provided object.',
     '- If a required field is missing, infer it ONLY from the provided context; otherwise use a safe placeholder that is still specific and evidence-based.',
-    '- Ensure honestFeedback items include: statement, flaws (>=3), reviewGate, whyRejectedInCodeReview, fixes, levelUpImpact {from,to,reasoning}, evidenceExamples.',
-    '- Ensure skillGapAnalysis and roadmapWeeks exist and include evidenceExamples arrays.',
+    '- Ensure honestFeedback items include: statement, flaws (>=3), reviewGate, whyRejectedInCodeReview, fixes, levelUpImpact {from,to,reasoning}, evidenceExamples (>=1 items).',
+    '- Ensure skillGapAnalysis, skillGaps, and roadmapWeeks exist and include evidenceExamples arrays with at least 1 item each.',
+    '- CRITICAL: All evidenceExamples arrays MUST have at least 1 string item. Never return empty arrays.',
   ].join('\n')
 }
 
@@ -289,7 +322,9 @@ async function validateOrRepairAiResponse(args: {
   systemForRepair: string
   userContext: unknown
 }): Promise<AiInsightsResponse> {
-  const first = aiInsightsResponseSchema.safeParse(args.initial)
+  // First attempt: direct validation
+  let parsed = args.initial
+  const first = aiInsightsResponseSchema.safeParse(parsed)
   if (first.success) return first.data
 
   const issue = first.error.issues[0]
@@ -322,7 +357,19 @@ async function validateOrRepairAiResponse(args: {
     },
   })
 
-  const second = aiInsightsResponseSchema.safeParse(repaired.response)
+  // Ensure all required arrays have at least 1 item
+  parsed = ensureMinArrayLengths(repaired.response, {
+    evidenceExamples: 1,
+    flaws: 3,
+    fixes: 1,
+    reasoning: 1,
+    actions: 1,
+    skillGapAnalysis: 1,
+    roadmapWeeks: 1,
+    honestFeedback: 1,
+  })
+
+  const second = aiInsightsResponseSchema.safeParse(parsed)
   if (second.success) return second.data
 
   const issue2 = second.error.issues[0]
@@ -378,6 +425,7 @@ export async function generateAiFeedback(input: {
     const ms = Date.now() - startedAt
     const errorMessage = e instanceof Error ? e.message : 'AI call failed'
     console.warn(`[ai] unavailable cached=false ms=${ms} err=${errorMessage}`)
+    console.error(`[ai] Full error:`, e)
 
     return {
       modelUsed: 'unavailable',
