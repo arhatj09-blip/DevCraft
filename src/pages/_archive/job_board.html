@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>DevSkill Audit - Job Board</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;700;800&amp;display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet">
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        fontFamily: {
+          'sans': ['Inter', 'sans-serif'],
+          'body': ['Inter', 'sans-serif'],
+          'headline': ['Manrope', 'sans-serif'],
+        },
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/src/index.css">
+</head>
+
+<body
+  class="bg-surface text-on-surface font-body antialiased flex h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+  <!-- Sidebar -->
+  <nav id="sidebar"
+    class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex-col p-4 gap-2 z-40 sidebar-mobile">
+    <div class="mb-8 px-2 flex items-center gap-3">
+      <div
+        class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline font-bold text-lg">
+        D</div>
+      <div>
+        <h1 class="font-manrope font-bold text-indigo-600 dark:text-indigo-400 text-lg leading-none">DevSkill
+        </h1>
+        <span class="text-xs text-on-surface-variant">Precision Suite</span>
+      </div>
+    </div>
+    <div class="flex-1 flex flex-col gap-1">
+      <a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200"
+        href="results_dashboard.html">
+        <span class="material-symbols-outlined text-[20px]">assessment</span>
+        <span class="font-label text-sm font-medium">Skill Audit</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200"
+        href="career_insights.html">
+        <span class="material-symbols-outlined text-[20px]">insights</span>
+        <span class="font-label text-sm font-medium">Career Insights</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200"
+        href="skill_improvement_roadmap.html">
+        <span class="material-symbols-outlined text-[20px]">map</span>
+        <span class="font-label text-sm font-medium">Improvement Roadmap</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200"
+        href="resume_insights.html">
+        <span class="material-symbols-outlined text-[20px]">description</span>
+        <span class="font-label text-sm font-medium">Resume Insights</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200"
+        href="code_analysis.html">
+        <span class="material-symbols-outlined text-[20px]">code</span>
+        <span class="font-label text-sm font-medium">Code Analysis</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200"
+        href="ui_ux_audit.html">
+        <span class="material-symbols-outlined text-[20px]">design_services</span>
+        <span class="font-label text-sm font-medium">UI/UX Audit</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2.5 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm rounded-md transition-all translate-x-1 duration-150"
+        href="job_board.html">
+        <span class="material-symbols-outlined text-[20px]">work</span>
+        <span class="font-label text-sm font-medium">Job Board</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-md transition-all hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 hover:text-slate-900 dark:hover:text-slate-200"
+        href="resume_optimizer.html">
+        <span class="material-symbols-outlined text-[20px]">auto_fix_high</span>
+        <span class="font-label text-sm font-medium">Resume Optimizer</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="md:ml-64 flex-1 flex flex-col h-screen overflow-y-auto bg-background relative">
+    <header
+      class="sticky top-0 z-50 flex h-16 w-full items-center justify-between bg-white/80 dark:bg-slate-950/80 backdrop-blur-md px-6 shadow-[0_4px_30px_rgba(0,0,0,0.04)]">
+      <div class="flex-1 hidden md:block"></div>
+      <div class="flex-1 flex justify-end">
+        <div
+          class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs">
+          ME
+        </div>
+      </div>
+    </header>
+
+    <div class="flex-1 overflow-y-auto p-6 lg:p-12 bg-background w-full">
+      <div class="max-w-7xl mx-auto space-y-8">
+        <div class="mb-10">
+          <h2 class="font-headline text-4xl font-bold text-on-surface tracking-tight">Job Board</h2>
+          <p class="text-on-surface-variant text-base mt-2 max-w-2xl">Real-time job postings filtered by your verified
+            skills.</p>
+        </div>
+
+        <div id="job-board-container" class="space-y-6">
+          <!-- Job listings will be rendered here -->
+          <p class="text-on-surface-variant">Loading job listings...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/src/pages/job_board.ts"></script>
+</body>
+
+</html>
